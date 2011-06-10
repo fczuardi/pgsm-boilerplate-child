@@ -8,7 +8,42 @@ Template:       boilerplate
 Version:        0.1.0
 */
 
+@import url("../boilerplate/style.css");
+
 body { 
   background-image: url(dev/pgsm_home_v3b.png);
   background-position:center top;
+  min-width:1020px;
+}
+
+header[role=banner] {
+  background-color: #25667A;
+  height: 165px;
+  min-width: 986px;
+  overflow: hidden;
+}
+
+#site-logo {
+  float:left;
+  position:relative;
+  left:50%;
+  margin-left:-570px;
+}
+#inner-header{
+  float:left;
+  position:relative;
+  left:50%;
+  width:493px;
+  height:165px;
+  text-align: right;
+}
+#header-shadow{
+  float:left;
+  position: relative;
+  height: 165px;
+  width: 50%;  
+  left: 50%;
+  background-color: #236174;
+  background-image: url(images/degradee.png);
+  background-repeat: no-repeat;
 }
