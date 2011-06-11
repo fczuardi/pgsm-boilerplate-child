@@ -16,13 +16,15 @@ body {
   min-width:1020px;
 }
 
+/******************************************************************
+HEADER SYTLES
+******************************************************************/
 header[role=banner] {
   background-color: #25667A;
   height: 165px;
   min-width: 986px;
   overflow: hidden;
 }
-
 #site-logo {
   float:left;
   position:relative;
@@ -46,4 +48,23 @@ header[role=banner] {
   background-color: #236174;
   background-image: url(images/degradee.png);
   background-repeat: no-repeat;
+}
+
+/******************************************************************
+NAVIGATION LEFT SIDEBAR
+******************************************************************/
+#access{
+  width: 212px;
+  left: 50%;
+  margin-left:-493px;
+  position: relative;
+}
+#access .menu{
+  background-color: #46879b;
+}
+#access .menu *{
+  text-decoration: none;
+}
+#access .menu .children{
+  background-color: #fff;
 }
