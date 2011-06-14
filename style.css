@@ -100,9 +100,9 @@ CONTENT
   position: relative;
   float:left;
   left:50%;
-  width:690px;
+  width:695px;
   margin-left:-281px;
-  padding: 37px 42px 42px 42px;
+  padding: 37px 37px 42px 42px;
   background-color:orange;
   opacity:0.8;
 }
@@ -121,7 +121,7 @@ SIDEBAR
 ul.xoxo{
   position: relative;
   float: right;
-  width:167px;
+  width:172px;
   margin-left: 0px;
   list-style:none;
   background-color:blue;
