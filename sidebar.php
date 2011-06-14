@@ -9,29 +9,17 @@ if(is_front_page()) : ?>
 	 * then the sidebar simply doesn't exist, so we'll hard-code in
 	 * some default sidebar stuff just in case.
 	 */
-	if ( ! dynamic_sidebar( 'primary-widget-area' ) ) : ?>
-	
-			<li>
-				<?php get_search_form(); ?>
-			</li>
-
-			<li>
-				<h3><?php _e( 'Archives', 'boilerplate' ); ?></h3>
-				<ul>
-					<?php wp_get_archives( 'type=monthly' ); ?>
-				</ul>
-			</li>
-
-			<li>
-				<h3><?php _e( 'Meta', 'boilerplate' ); ?></h3>
-				<ul>
-					<?php wp_register(); ?>
-					<li><?php wp_loginout(); ?></li>
-					<?php wp_meta(); ?>
-				</ul>
-			</li>
-
-		<?php endif; // end primary widget area ?>
+	if ( ! dynamic_sidebar( 'primary-widget-area' ) ) :
+    if(function_exists('the_widget')):
+      the_widget('Recent_Posts_With_Time', 
+                  array('title'=>__('Últimas Notícias','pgsm-boilerplate-child'), 'number'=>'5'), 
+                  array('widget_id'=>'ultimas-noticias-widget',
+                        'before_widget' => '<li>',
+                        'after_widget' => '</li>',
+                        'before_title' => '<h3>',
+                        'after_title' => '</h3>'));
+    endif;
+  endif;?>
 			</ul>
 
 <?php
