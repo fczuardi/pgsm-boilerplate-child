@@ -12,7 +12,7 @@
 			 * We filter the output of wp_title() a bit -- see
 			 * boilerplate_filter_wp_title() in functions.php.
 			 */
-			boilerplate_filter_wp_title( '|', true, 'right' );
+			wp_title( '|', true, 'right' );
 		?></title>
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
