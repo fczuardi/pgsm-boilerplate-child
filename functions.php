@@ -10,6 +10,8 @@ function my_child_theme_setup() {
     'description' => __( 'PGSM', 'pgsm-boilerplate-child' )
     )
   ) );
+  remove_action( 'widgets_init', 'boilerplate_widgets_init' );
+  add_action('widgets_init', 'pgsm_widgets_init');
 }
 
 class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
@@ -62,9 +64,8 @@ class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
   }
   
 }
-// add_action('widgets_init', create_function('', 'return register_widget("Recent_Posts_With_Time");'));
-add_action('widgets_init', 'pgsm_default_widgets');
-function pgsm_default_widgets() {
+
+function pgsm_widgets_init() {
   // Remove all default widgets (listed on /wp-includes/default-widgets.php)
   // unregister_widget('WP_Widget_Pages');
   // unregister_widget('WP_Widget_Calendar');
@@ -82,6 +83,18 @@ function pgsm_default_widgets() {
   
   //Register the default widgets for this theme
   register_widget('Recent_Posts_With_Time');
+  
+	// Area 1, located at the top of the sidebar.
+	register_sidebar( array(
+		'name' => __( 'Primary Widget Area', 'boilerplate' ),
+		'id' => 'primary-widget-area',
+		'description' => __( 'The primary widget area', 'boilerplate' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+  
 }
 
 ?>
