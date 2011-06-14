@@ -58,13 +58,86 @@ NAVIGATION LEFT SIDEBAR
   left: 50%;
   margin-left:-493px;
   position: relative;
+  float:left;
 }
 #access .menu{
   background-color: #46879b;
+  margin-top: 19px;
+}
+#access .menu ul li{
+  padding: 0 23px 0 23px;
+  line-height: 28px;
+}
+#access .menu ul li:hover{
+  background-color:#3c7a8f;
+}
+#access .menu a{
+  color: #fff;
 }
 #access .menu *{
   text-decoration: none;
+  text-transform: uppercase;
+}
+#access .menu .children li:hover{
+  background: none;
 }
 #access .menu .children{
   background-color: #fff;
+  margin: 0 -23px 0 -23px;
+  padding-left: 13px;
+}
+#access .menu .children:hover{
+  background-color:#eaf4f7;
+}
+#access .menu .children a{
+  color: #3591ad;
+}
+
+/******************************************************************
+CONTENT
+******************************************************************/
+#content{
+  position: relative;
+  float:left;
+  left:50%;
+  width:690px;
+  margin-left:-281px;
+  padding: 37px 42px 42px 42px;
+  background-color:orange;
+  opacity:0.8;
+}
+#content article{
+  background-color:red;
+}
+body.home #content article{
+  position:relative;
+  float:left;
+  width:489px;
+  margin-right:34px;
+}
+/******************************************************************
+SIDEBAR
+******************************************************************/
+ul.xoxo{
+  position: relative;
+  left:100%;
+  width:210px;
+  margin-left:-210px;
+  list-style:none;
+  background-color:blue;
+  display:table-cell;
+}
+/******************************************************************
+FOOTER
+******************************************************************/
+footer[role=contentinfo]{
+  position: relative;
+  float:left;
+  left:50%;
+  width:775px;
+  background:green;
+  opacity:0.5;
+  margin-left:-282px;
+  clear:both;
+  height:148px;
 }
