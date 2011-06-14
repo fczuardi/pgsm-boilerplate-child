@@ -12,6 +12,7 @@ Version:        0.1.0
 
 body { 
   background-image: url(dev/pgsm_home_v3b.png);
+  background-repeat: no-repeat;
   background-position:center top;
   min-width:1020px;
 }
