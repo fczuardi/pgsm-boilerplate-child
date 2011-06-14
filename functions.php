@@ -1,4 +1,5 @@
 <?php
+define('HEADER_IMAGE', trailingslashit( get_stylesheet_directory_uri() ).'/images/headers/logo.png');
 define('HEADER_IMAGE_WIDTH', 408);
 define('HEADER_IMAGE_HEIGHT', 165);
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
