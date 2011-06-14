@@ -120,9 +120,9 @@ SIDEBAR
 ******************************************************************/
 ul.xoxo{
   position: relative;
-  left:100%;
-  width:210px;
-  margin-left:-210px;
+  float: right;
+  width:167px;
+  margin-left: 0px;
   list-style:none;
   background-color:blue;
   display:table-cell;
