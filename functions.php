@@ -16,7 +16,8 @@ function my_child_theme_setup() {
 
 class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
   function Recent_Posts_With_Time() {
-    $widget_ops = array('classname' => 'widget_recent_posts_with_time', 'description' => __( "The most recent posts on your site, with timestamp") );
+    $widget_ops = array('classname' => 'widget_recent_posts_with_time', 
+                        'description' => __( "The most recent posts on your site, with timestamp") );
     $this->WP_Widget('recent-posts-with-time', __('Recent Posts With Time'), $widget_ops);
     $this->alt_option_name = 'widget_recent_entries';
     add_action( 'save_post', array(&$this, 'flush_widget_cache') );
@@ -66,35 +67,34 @@ class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
 }
 
 function pgsm_widgets_init() {
-  // Remove all default widgets (listed on /wp-includes/default-widgets.php)
-  // unregister_widget('WP_Widget_Pages');
-  // unregister_widget('WP_Widget_Calendar');
-  // unregister_widget('WP_Widget_Archives');
-  // unregister_widget('WP_Widget_Links');
-  // unregister_widget('WP_Widget_Meta');
-  // unregister_widget('WP_Widget_Search');
-  // unregister_widget('WP_Widget_Text');
-  // unregister_widget('WP_Widget_Categories');
-  // unregister_widget('WP_Widget_Recent_Posts');
-  // unregister_widget('WP_Widget_Recent_Comments');
-  // unregister_widget('WP_Widget_RSS');
-  // unregister_widget('WP_Widget_Tag_Cloud');
-  // unregister_widget('WP_Nav_Menu_Widget');
-  
   //Register the default widgets for this theme
   register_widget('Recent_Posts_With_Time');
   
-	// Area 1, located at the top of the sidebar.
-	register_sidebar( array(
-		'name' => __( 'Primary Widget Area', 'boilerplate' ),
-		'id' => 'primary-widget-area',
-		'description' => __( 'The primary widget area', 'boilerplate' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
+  // Area 1, located at the top of the sidebar.
+  register_sidebar( array(
+    'name' => __( 'Primary Widget Area', 'boilerplate' ),
+    'id' => 'primary-widget-area',
+    'description' => __( 'The primary widget area', 'boilerplate' ),
+    'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+    'after_widget' => '</li>',
+    'before_title' => '<h3 class="widget-title">',
+    'after_title' => '</h3>',
+  ) );
   
+  // check to see if the primary widget area has the same six default widgets
+  // (http://wordpress.org/support/topic/setting-default-widgets-in-twenty-ten-child-theme?replies=8#post-2167119)
+  // of a fresh wordpress installation, if so, set the pgsm default primary widget area
+  $default_wp_primary_widgets = array ( 0 => 'search-2', 
+                                        1 => 'recent-posts-2', 
+                                        2 => 'recent-comments-2', 
+                                        3 => 'archives-2', 
+                                        4 => 'categories-2', 
+                                        5 => 'meta-2');
+  $current_widgets = get_option('sidebars_widgets');
+  if (count(array_diff($default_wp_primary_widgets, $current_widgets['primary-widget-area'])) == 0){
+    $current_widgets['primary-widget-area'] = array ( 0 => 'recent-posts-with-time-2');
+    update_option( 'sidebars_widgets',  $current_widgets);
+  }
 }
 
 ?>
