@@ -11,13 +11,15 @@ Version:        0.1.0
 @import url("../boilerplate/style.css");
 
 body.home { 
-  background-image: url(dev/pgsm_home_v3b.png);
-  background-repeat: no-repeat;
+/*  background-image: url(dev/pgsm_home_v3b.png);*/
+/*  background-repeat: no-repeat;*/
   background-position:center top;
   min-width:1020px;
 }
 
 body {
+  font-family: "Myriad Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #25667a;
   background-color:#f3f3f3;
 }
 /******************************************************************
@@ -152,10 +154,29 @@ footer[role=contentinfo]{
   position: relative;
   float:left;
   left:50%;
-  width:775px;
+  padding: 45px 62px 0 45px;
+  width: 667px;
+  height:105px;
   background:none;
-  opacity:0.5;
   margin-left:-282px;
   clear:both;
-  height:148px;
+  background-color: none;
 }
+footer[role=contentinfo] h2{
+  margin-bottom: 4px;
+}
+footer[role=contentinfo] *{
+font-size: 14px;
+}
+#logo-footer{
+  display:block;
+  float:left;
+  margin-right: 26px;
+}
+
+
+
+
+
+
+
