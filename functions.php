@@ -41,7 +41,7 @@ class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
     ob_start();
     extract($args);
 
-    $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts') : $instance['title'], $instance, $this->id_base);
+    $title = apply_filters('widget_title', empty($instance['title']) ? __('Últimas Notícias') : $instance['title'], $instance, $this->id_base);
     if ( ! $number = absint( $instance['number'] ) )
       $number = 10;
 
