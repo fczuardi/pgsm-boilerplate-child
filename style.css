@@ -22,6 +22,10 @@ body {
   color: #25667a;
   background-color:#f3f3f3;
 }
+
+a, a:active, a:visited, a:hover {
+  color: #25667a;
+}
 /******************************************************************
 HEADER SYTLES
 ******************************************************************/
@@ -142,7 +146,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 42px 42px;
   background-color:#fff;
-  opacity:0.8;
+/*  opacity:0.5;*/
   min-height: 706px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
@@ -157,7 +161,7 @@ body.home #content article{
   position:relative;
   float:left;
   width:500px;
-  margin-right: 23px;
+  margin-right: 22px;
 }
 /******************************************************************
 SIDEBAR
@@ -165,11 +169,45 @@ SIDEBAR
 #content ul.xoxo{
   position: relative;
   float: right;
-  width:172px;
+  width:173px;
   margin-left: 0px;
   list-style:none;
   background-color: none;
   display:table-cell;
+  padding-top:12px;
+}
+#content ul.xoxo h3{
+  color: #92b2bc;
+  text-transform: uppercase;
+  font-weight:normal;
+  font-size:12;
+  letter-spacing: 1.3px;
+  margin-bottom: 20px;
+}
+#content ul.xoxo a{
+  font-weight: bold;
+  text-decoration:none;
+  font-size: 14px;
+  line-height: 19px;
+  width: 180px;
+  display: block;
+/*  background-color: green;*/
+}
+#content ul.xoxo ul{
+  list-style: none;
+  margin: 0;
+}
+#content ul.xoxo ul li{
+  border-bottom: 1px solid #bdd1d7;
+  padding-bottom:7px;
+}
+#content ul.xoxo time{
+  text-transform: capitalize;
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 11px;
+  margin-bottom: 1px;
 }
 /******************************************************************
 FOOTER
