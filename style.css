@@ -10,13 +10,16 @@ Version:        0.1.0
 
 @import url("../boilerplate/style.css");
 
-body { 
+body.home { 
   background-image: url(dev/pgsm_home_v3b.png);
   background-repeat: no-repeat;
   background-position:center top;
   min-width:1020px;
 }
 
+body {
+  background-color:#f3f3f3;
+}
 /******************************************************************
 HEADER SYTLES
 ******************************************************************/
@@ -25,6 +28,8 @@ header[role=banner] {
   height: 165px;
   min-width: 986px;
   overflow: hidden;
+  position: relative;
+  z-index: 10;
 }
 #site-logo {
   float:left;
@@ -64,6 +69,11 @@ NAVIGATION LEFT SIDEBAR
 #access .menu{
   background-color: #46879b;
   margin-top: 19px;
+  -moz-border-radius: 7px 0 0 7px;
+  -moz-box-shadow: 0 6px 10px 0px rgba(35,97,116,0.13);
+  -webkit-box-shadow: 0 6px 10px 0px rgba(35,97,116,0.13);
+  box-shadow: 0 6px 10px 0px rgba(35,97,116,0.13);
+  border-radius: 7px 0 0 7px;
 }
 #access .menu ul li{
   padding: 0 23px 0 23px;
@@ -103,18 +113,25 @@ CONTENT
   left:50%;
   width:695px;
   margin-left:-281px;
-  padding: 37px 37px 42px 42px;
-  background-color:orange;
+  margin-top:-20px;
+  padding: 47px 37px 42px 42px;
+  background-color:#fff;
   opacity:0.8;
+  min-height: 706px;
+  -moz-border-radius: 0 0 6px 6px;
+  -moz-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
+  -webkit-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
+  box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
+  border-radius: 0 0 6px 6px;
 }
 #content article{
-  background-color:red;
+  background-color: none;
 }
 body.home #content article{
   position:relative;
   float:left;
-  width:489px;
-  margin-right:34px;
+  width:500px;
+  margin-right: 23px;
 }
 /******************************************************************
 SIDEBAR
@@ -125,7 +142,7 @@ ul.xoxo{
   width:172px;
   margin-left: 0px;
   list-style:none;
-  background-color:blue;
+  background-color: none;
   display:table-cell;
 }
 /******************************************************************
@@ -136,7 +153,7 @@ footer[role=contentinfo]{
   float:left;
   left:50%;
   width:775px;
-  background:green;
+  background:none;
   opacity:0.5;
   margin-left:-282px;
   clear:both;
