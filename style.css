@@ -164,7 +164,7 @@ body.home #content article{
   margin-right: 22px;
 }
 /******************************************************************
-SIDEBAR
+RIGHT SIDEBAR (HOME)
 ******************************************************************/
 #content ul.xoxo{
   position: relative;
@@ -176,6 +176,16 @@ SIDEBAR
   display:table-cell;
   padding-top:12px;
 }
+#content ul.xoxo .feed-icon{
+  background-image:url(images/feed-icon.png);
+  display:block;
+  overflow: hidden;
+  width: 15px;
+  height: 15px;
+  text-indent: 15px;
+  float: right;
+  margin: -1px 4px 0 0;
+}
 #content ul.xoxo h3{
   color: #92b2bc;
   text-transform: uppercase;
@@ -183,6 +193,7 @@ SIDEBAR
   font-size:12;
   letter-spacing: 1.3px;
   margin-bottom: 20px;
+  float: left;
 }
 #content ul.xoxo a{
   font-weight: bold;
@@ -196,6 +207,7 @@ SIDEBAR
 #content ul.xoxo ul{
   list-style: none;
   margin: 0;
+  clear: both;
 }
 #content ul.xoxo ul li{
   border-bottom: 1px solid #bdd1d7;
