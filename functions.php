@@ -1,4 +1,5 @@
 <?php
+//require_once ( get_stylesheet_directory() . '/theme-options.php' );
 define('HEADER_IMAGE', trailingslashit( get_stylesheet_directory_uri() ).'/images/headers/logo.png');
 define('HEADER_IMAGE_WIDTH', 408);
 define('HEADER_IMAGE_HEIGHT', 165);

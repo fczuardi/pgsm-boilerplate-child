@@ -136,7 +136,7 @@ body.home #content article{
 /******************************************************************
 SIDEBAR
 ******************************************************************/
-ul.xoxo{
+#content ul.xoxo{
   position: relative;
   float: right;
   width:172px;
