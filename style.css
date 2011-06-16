@@ -48,7 +48,8 @@ header[role=banner] {
   float:left;
   position:relative;
   left:50%;
-  width:413px;
+  margin-left:-150px;
+  width:563px;
   padding: 45px 40px;
   height:75px;
   text-align: right;
