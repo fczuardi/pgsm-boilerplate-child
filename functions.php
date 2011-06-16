@@ -16,6 +16,28 @@ function my_child_theme_setup() {
   add_action('widgets_init', 'pgsm_widgets_init');
 }
 
+/**
+ * Prints HTML with meta information for the current post—date/time and author.
+ *
+ * @since Twenty Ten 1.0
+ */
+function boilerplate_posted_on() {
+	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'boilerplate' ),
+		'meta-prep meta-prep-author',
+		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
+			get_permalink(),
+			esc_attr( get_the_time('c') ),
+			get_the_date('D j M Y : h\hi')
+		),
+		sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
+			get_author_posts_url( get_the_author_meta( 'ID' ) ),
+			sprintf( esc_attr__( 'View all posts by %s', 'boilerplate' ), get_the_author() ),
+			get_the_author()
+		)
+	);
+}
+
+
 class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
   function Recent_Posts_With_Time() {
     $widget_ops = array('classname' => 'widget_recent_posts_with_time', 
@@ -73,16 +95,27 @@ function pgsm_widgets_init() {
   //Register the default widgets for this theme
   register_widget('Recent_Posts_With_Time');
   
-  // Area 1, located at the top of the sidebar.
+  // Area 1, located in the header. Empty by default.
   register_sidebar( array(
-    'name' => __( 'Primary Widget Area', 'boilerplate' ),
+    'name' => __( 'First Header Widget Area', 'pgsm-boilerplate-child' ),
+    'id' => 'first-header-widget-area',
+    'description' => __( 'The first header widget area', 'pgsm-boilerplate-child' ),
+    'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="widget-title">',
+    'after_title' => '</h3>',
+  ) );
+  // Area 2, located at the top of the sidebar on the home page.
+  register_sidebar( array(
+    'name' => __( 'Primary Widget Area', 'pgsm-boilerplate-child' ),
     'id' => 'primary-widget-area',
-    'description' => __( 'The primary widget area', 'boilerplate' ),
+    'description' => __( 'The primary widget area', 'pgsm-boilerplate-child' ),
     'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
     'after_widget' => '</li>',
     'before_title' => '<h3 class="widget-title">',
     'after_title' => '</h3>',
   ) );
+
   
   // check to see if the primary widget area has the same six default widgets
   // (http://wordpress.org/support/topic/setting-default-widgets-in-twenty-ten-child-theme?replies=8#post-2167119)
@@ -96,6 +129,7 @@ function pgsm_widgets_init() {
   $current_widgets = get_option('sidebars_widgets');
   if (count(array_diff($default_wp_primary_widgets, $current_widgets['primary-widget-area'])) == 0){
     $current_widgets['primary-widget-area'] = array ( 0 => 'recent-posts-with-time-2');
+    $current_widgets['first-header-widget-area'] = array ( 0 => 'qtranslate-5');
     update_option( 'sidebars_widgets',  $current_widgets);
   }
 }
