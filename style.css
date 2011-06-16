@@ -105,11 +105,11 @@ NAVIGATION LEFT SIDEBAR
   border-radius: 7px 0 0 7px;
   overflow: hidden;
 }
-#access .menu ul li{
+#access .menu li{
   padding: 0 23px 0 23px;
   line-height: 28px;
 }
-#access .menu ul li:hover{
+#access .menu li:hover{
   background-color:#3c7a8f;
 }
 #access .menu a{
