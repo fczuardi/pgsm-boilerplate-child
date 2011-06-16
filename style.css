@@ -36,6 +36,7 @@ header[role=banner] {
   overflow: hidden;
   position: relative;
   z-index: 10;
+/*  opacity: 0.5;*/
 }
 #site-logo {
   float:left;
@@ -73,6 +74,46 @@ header[role=banner] {
   float: right;
   letter-spacing: 1.5px;
   margin-right: -2px;
+}
+#inner-header .qtrans_language_chooser{
+  position:absolute;
+  right:40px;
+  bottom:33px;
+  list-style: none;
+  font-size:10px;
+  letter-spacing:2px;
+}
+#inner-header .qtrans_language_chooser a{
+  font-weight:bold;
+}
+#inner-header .qtrans_language_chooser li{
+  float: left;
+}
+#inner-header .qtrans_language_chooser li{
+  color: #184858;
+  margin-left: 3px;
+}
+#inner-header .qtrans_language_chooser li:before{
+  content: " | ";
+}
+#inner-header .qtrans_language_chooser li:first-child:before{
+  content: "";
+}
+
+#inner-header .qtrans_flag_and_text{
+  padding-left: 0;
+  padding-right: 16px;
+  background-position: right top;
+  background-size: 12px;
+}
+#inner-header .qtrans_flag_and_text.qtrans_flag_en{
+  background-image: url(images/us.png);
+}
+#inner-header .qtrans_flag_and_text.qtrans_flag_es{
+  background-image: url(images/es.png);
+}
+#inner-header .qtrans_flag_and_text.qtrans_flag_pt{
+  background-image: url(images/br.png);
 }
 #inner-header .qtrans_language_chooser .active{
   display:none;
