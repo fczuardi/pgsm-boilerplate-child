@@ -3,7 +3,6 @@
 define('HEADER_IMAGE', trailingslashit( get_stylesheet_directory_uri() ).'/images/headers/logo.png');
 define('HEADER_IMAGE_WIDTH', 408);
 define('HEADER_IMAGE_HEIGHT', 165);
-add_action( 'after_setup_theme', 'my_child_theme_setup' );
 function my_child_theme_setup() {
   register_default_headers( array(
     'pgsm' => array(
@@ -15,6 +14,7 @@ function my_child_theme_setup() {
   remove_action( 'widgets_init', 'boilerplate_widgets_init' );
   add_action('widgets_init', 'pgsm_widgets_init');
 }
+add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
 /**
  * Prints HTML with meta information for the current post—date/time and author.
