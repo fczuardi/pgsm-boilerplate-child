@@ -12,7 +12,7 @@ Version:        0.1.0
 
 body.home { 
 /*  background-image: url(dev/pgsm_home_v3b.png);*/
-/*  background-repeat: no-repeat;*/
+  background-repeat: no-repeat;
   background-position:center top;
   min-width:1020px;
 }
@@ -26,6 +26,7 @@ body {
 a, a:active, a:visited, a:hover {
   color: #25667a;
 }
+
 /******************************************************************
 HEADER SYTLES
 ******************************************************************/
@@ -199,6 +200,13 @@ CONTENT
   box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
   border-radius: 0 0 6px 6px;
 }
+#content h2 {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+
 #content article{
   background-color: none;
 }
@@ -207,6 +215,17 @@ body.home #content article{
   float:left;
   width:500px;
   margin-right: 22px;
+}
+body.home #content h2.entry-title{
+  display:none;
+}
+body.home #content h2{
+  margin-top:13px;
+  margin-bottom:24px;
+}
+body.home #content iframe{
+  max-width: 490px;
+  margin-bottom: 27px;
 }
 /******************************************************************
 RIGHT SIDEBAR (HOME)
