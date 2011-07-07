@@ -54,6 +54,6 @@
 			The menu assiged to the primary position is the one used.  
 			If none is assigned, the menu with the lowest ID is used.  
 			*/ ?>
-			<?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); var_dump(has_nav_menu( 'primary' )); ?>
+			<?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #access -->
 		<section id="content" role="main">
