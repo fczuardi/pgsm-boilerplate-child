@@ -78,6 +78,9 @@ class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
     <li><time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time><a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a></li>
     <?php endwhile; ?>
     </ul>
+    <p>
+      <a href="<?php echo get_permalink(get_option('page_for_posts'));?>"><?php _e('Ler todas as notícias', 'pgsm-boilerplate-child');?></a>
+    </p>
     <?php echo $after_widget; ?>
     <?php
     // Reset the global $the_post as this query will have stomped on it

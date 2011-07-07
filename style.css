@@ -270,7 +270,7 @@ RIGHT SIDEBAR (HOME)
 }
 #content ul.xoxo ul{
   list-style: none;
-  margin: 0;
+  margin: 0 0 14px 0;
   clear: both;
 }
 #content ul.xoxo ul li{
@@ -284,6 +284,11 @@ RIGHT SIDEBAR (HOME)
   line-height: 18px;
   margin-top: 11px;
   margin-bottom: 1px;
+}
+#content ul.xoxo p a{
+  font-size:12px;
+  font-weight:normal;
+  margin-left:4px;
 }
 /******************************************************************
 FOOTER
