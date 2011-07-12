@@ -13,9 +13,42 @@ function my_child_theme_setup() {
   ) );
   remove_action( 'widgets_init', 'boilerplate_widgets_init' );
   add_action('widgets_init', 'pgsm_widgets_init');
+  add_action('admin_menu', 'mt_add_pages');
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
+// Código emprestado de http://codex.wordpress.org/Administration_Menus
+function mt_add_pages() {
+    add_pages_page(__('Conjunto Inicial','pgsm-boilerplate-child'), __('Conjunto Inicial','pgsm-boilerplate-child'), 'manage_options', 'startingpages', 'mt_settings_page');
+}
+// mt_settings_page() displays the page content for the Test settings submenu
+function mt_settings_page() {
+    echo "<h2>" . __( 'Default Static Pages', 'pgsm-boilerplate-child' ) . "</h2>";
+    //must check that the user has the required capability 
+    if (!current_user_can('manage_options'))
+    {
+      wp_die( __('You do not have sufficient permissions to access this page.') );
+    }
+    $submit_label = __( 'Pupular Páginas Iniciais', 'pgsm-boilerplate-child' );
+    //loop through the portuguese content file directory
+    if ($handle = opendir(get_stylesheet_directory() . '/pages_content/pt')) {
+        /* This is the correct way to loop over the directory. */
+        while (false !== ($file = readdir($handle))) {
+          $name_parts = explode('.', $file);
+          if ($name_parts[1] == '') {
+            continue;
+          }
+          var_dump(get_page_by_path($name_parts[1]));
+          echo $name_parts[1] . '<br>';
+        }
+        closedir($handle);
+        ?>
+        <form action="" method="POST">
+          <input type="hidden" name="foo" value="bar">
+          <input type="submit" value="<?php echo $submit_label;?>"/>
+        <?php
+    }    
+}
 /**
  * Prints HTML with meta information for the current post—date/time and author.
  *
