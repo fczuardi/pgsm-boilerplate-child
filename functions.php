@@ -30,21 +30,75 @@ function mt_settings_page() {
       wp_die( __('You do not have sufficient permissions to access this page.') );
     }
     $submit_label = __( 'Pupular Páginas Iniciais', 'pgsm-boilerplate-child' );
+    $has_pages = false;
+    $content_pages_path = '/pages_content/pt';
     //loop through the portuguese content file directory
-    if ($handle = opendir(get_stylesheet_directory() . '/pages_content/pt')) {
+    if ($handle = opendir(get_stylesheet_directory() . $content_pages_path)) {
         /* This is the correct way to loop over the directory. */
         while (false !== ($file = readdir($handle))) {
           $name_parts = explode('.', $file);
+          $page = get_page_by_path($name_parts[1]);
           if ($name_parts[1] == '') {
             continue;
           }
-          var_dump(get_page_by_path($name_parts[1]));
           echo $name_parts[1] . '<br>';
-        }
+          
+          if ($_POST['update_pages'] == 'yes'){
+            $page_content = file_get_contents(get_stylesheet_directory() . $content_pages_path . '/' . $file);
+
+            //extract metadata
+            preg_match("/^\<!--([^∫]*)-->/", $page_content, $matches);
+            $meta_lines = explode("\n", trim($matches[1]));
+            $meta = array();
+            foreach ($meta_lines as $line){
+              preg_match("/([^∫]*)\s*\:\s*(.*)/", $line, $parts);
+              $meta[strtolower($parts[1])] = $parts[2];
+            }
+            
+            echo '<br>---<br>';
+            if (is_null($page)){
+              $updated_page = array();
+              $updated_page['post_type']  = 'page';
+              $updated_page['post_name'] = $name_parts[1];
+            } else {
+              $updated_page = (array) $page;
+              $has_pages = true;
+            }
+            $updated_page['post_title'] = $meta['title'];
+            $updated_page['post_status'] = 'publish';
+            $updated_page['post_content'] = $page_content;
+            $updated_page['menu_order'] = (int) $name_parts[0]; //If new post is a page, sets the order should it appear in the tabs.
+            //   'menu_order' => [ <order> ] //If new post is a page, sets the order should it appear in the tabs.
+            //   'comment_status' => [ 'closed' | 'open' ] // 'closed' means no comments.
+            //   'ping_status' => [ 'closed' | 'open' ] // 'closed' means pingbacks or trackbacks turned off
+            //   'pinged' => [ ? ] //?
+            //   'post_author' => [ <user ID> ] //The user ID number of the author.
+            //   'post_category' => [ array(<category id>, <...>) ] //Add some categories.
+            //   'tags_input' => [ '<tag>, <tag>, <...>' ] //For tags.
+            //   'post_parent' => [ <post ID> ] //Sets the parent of the new post.
+            if (is_null($page)){
+              $pageid = wp_insert_post ($updated_page);
+              if ($pageid == 0) { 
+               echo  'Add Page Failed <br>';
+              }
+            } else {
+              $pageid = $updated_page['ID'];
+              wp_update_post($updated_page);
+            }
+            if ($meta['template']) {
+              echo '<br>TEMPLATE UPDATE<br>';
+              var_dump($meta['template']);
+              update_post_meta($pageid, '_wp_page_template', $meta['template'] . '.php');
+            }
+          }
+        } // while
         closedir($handle);
+        if ($has_pages) {
+          $submit_label = __( 'Sobrescrever Páginas Iniciais (cuidado!)', 'pgsm-boilerplate-child' );
+        }
         ?>
         <form action="" method="POST">
-          <input type="hidden" name="foo" value="bar">
+          <input type="hidden" name="update_pages" value="yes">
           <input type="submit" value="<?php echo $submit_label;?>"/>
         <?php
     }    
