@@ -21,7 +21,7 @@ body {
 }
 
 body.home{
-  background-image: url(dev/pgsm_home_v3b.png);
+/*  background-image: url(dev/pgsm_home_v3b.png);*/
 }
 
 a, a:active, a:visited, a:hover {
@@ -199,7 +199,7 @@ CONTENT
   padding: 47px 37px 42px 42px;
   background-color:#fff;
 /*  opacity:0.5;*/
-  min-height: 706px;
+  min-height: 650px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
   -webkit-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
@@ -261,6 +261,21 @@ a.googlemaps-link{
   text-transform:uppercase;
   background-color:#eaf4f7;
   color: #87adb8;
+}
+
+.print-button{
+  position:absolute;
+  top:66px;
+  right:60px;
+  background-image:url(images/printer.png);
+  background-repeat: no-repeat;
+  background-position: right 1px;
+}
+.print-button a{
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:2px;
+  padding-right:15px;
 }
 /******************************************************************
 RIGHT SIDEBAR (HOME)

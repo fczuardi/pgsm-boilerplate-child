@@ -23,6 +23,11 @@ get_header(); ?>
 					<div class="entry-content">
 						<?php the_content(); ?>
 						<?php wp_link_pages( array( 'before' => '' . __( 'Pages:', 'boilerplate' ), 'after' => '' ) ); ?>
+  					<?php if(function_exists('wp_print')) { ?>
+  					  <div class="print-button">
+  					  <?php print_link(); ?>
+					    </div>
+					  <?php } ?> 
 						<?php edit_post_link( __( 'Edit', 'boilerplate' ), '', '' ); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-## -->
