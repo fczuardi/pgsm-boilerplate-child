@@ -29,10 +29,13 @@
 		 * generally use this hook to add elements to <head> such
 		 * as styles, scripts, and meta tags.
 		 */
+		if ($post->post_name){
+      $extraclasses = 'slug-'.$post->post_name;
+		}
 		wp_head();
 ?>
 	</head>
-	<body <?php body_class(); ?>>
+	<body <?php body_class($extraclasses); ?>>
 		<header role="banner">
       <a href="<?php echo bloginfo( 'url' ); ?>"><img id="site-logo" src="<?php header_image();?>" /></a>
       <div id="inner-header">

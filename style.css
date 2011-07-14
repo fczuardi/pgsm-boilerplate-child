@@ -10,21 +10,27 @@ Version:        0.1.0
 
 @import url("../boilerplate/style.css");
 
-body.home { 
-/*  background-image: url(dev/pgsm_home_v3b.png);*/
+body {
+  font-family: "Myriad Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: #25667a;
+  background-color:#f3f3f3;
+/*  background-image: url(dev/pgsm_11_mapa_v1.png);*/
   background-repeat: no-repeat;
   background-position:center top;
   min-width:1020px;
 }
 
-body {
-  font-family: "Myriad Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
-  color: #25667a;
-  background-color:#f3f3f3;
+body.home{
+  background-image: url(dev/pgsm_home_v3b.png);
 }
 
 a, a:active, a:visited, a:hover {
   color: #25667a;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
 }
 
 /******************************************************************
@@ -227,6 +233,35 @@ body.home #content iframe{
   max-width: 490px;
   margin-bottom: 27px;
 }
+
+body.slug-localizacao #content article .entry-title{
+  text-transform: uppercase;
+  font-size:18px;
+  font-weight:normal;
+  letter-spacing:3.5px;
+  margin-top:9px;
+  margin-bottom:4px;
+}
+.entry-content h2{
+  margin-left:2px;
+}
+.googlemaps-map{
+  margin-left:-9px;
+  margin-top:29px;
+  margin-bottom:12px;
+}
+
+a.googlemaps-link{
+  display:block;
+  width:710px;
+  line-height:27px;
+  margin-left:-10px;
+  letter-spacing:1px;
+  text-align:center;
+  text-transform:uppercase;
+  background-color:#eaf4f7;
+  color: #87adb8;
+}
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
@@ -267,6 +302,9 @@ RIGHT SIDEBAR (HOME)
   width: 180px;
   display: block;
 /*  background-color: green;*/
+}
+#content ul.xoxo a:hover{
+  text-decoration:underline;
 }
 #content ul.xoxo ul{
   list-style: none;
