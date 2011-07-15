@@ -12,18 +12,15 @@ Version:        0.1.0
 
 body {
   font-family: "Myriad Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
-  color: #25667a;
+  color: #666;
   background-color:#f3f3f3;
-/*  background-image: url(dev/pgsm_11_mapa_v1.png);*/
   background-repeat: no-repeat;
   background-position:center top;
   min-width:1020px;
 }
-
-body.home{
-/*  background-image: url(dev/pgsm_home_v3b.png);*/
+h1 {
+  color: #25667a;
 }
-
 a, a:active, a:visited, a:hover {
   color: #25667a;
   text-decoration:none;
@@ -156,10 +153,13 @@ NAVIGATION LEFT SIDEBAR
   box-shadow: 0 6px 10px 0px rgba(35,97,116,0.13);
   border-radius: 7px 0 0 7px;
   overflow: hidden;
+  padding-top:14px;
+  padding-bottom:12px;
 }
 #access .menu li{
   padding: 0 23px 0 23px;
-  line-height: 28px;
+  line-height: 30px;
+  letter-spacing:1.3px;
 }
 #access .menu li:hover{
   background-color:#3c7a8f;
@@ -196,45 +196,17 @@ CONTENT
   width:695px;
   margin-left:-281px;
   margin-top:-20px;
-  padding: 47px 37px 42px 42px;
+  padding: 47px 37px 8px 42px;
   background-color:#fff;
 /*  opacity:0.5;*/
-  min-height: 650px;
+  min-height: 667px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
   -webkit-box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
   box-shadow: 0 10px 20px 0px rgba(35,97,116,0.24);
   border-radius: 0 0 6px 6px;
 }
-#content h2 {
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 2px;
-  font-weight: normal;
-}
-
-#content article{
-  background-color: none;
-}
-body.home #content article{
-  position:relative;
-  float:left;
-  width:500px;
-  margin-right: 22px;
-}
-body.home #content h2.entry-title{
-  display:none;
-}
-body.home #content h2{
-  margin-top:13px;
-  margin-bottom:24px;
-}
-body.home #content iframe{
-  max-width: 490px;
-  margin-bottom: 27px;
-}
-
-body.slug-localizacao #content article .entry-title{
+body #content article .entry-title{
   text-transform: uppercase;
   font-size:18px;
   font-weight:normal;
@@ -242,27 +214,25 @@ body.slug-localizacao #content article .entry-title{
   margin-top:9px;
   margin-bottom:4px;
 }
+#content h2 {
+  text-transform: uppercase;
+  margin-bottom:24px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: normal;
+  color: #92B2BC;
+}
+#content article{
+  background-color: none;
+}
+#content article p{
+  font-size:16px;
+  margin-left:4px;
+  line-height:22px;
+}
 .entry-content h2{
   margin-left:2px;
 }
-.googlemaps-map{
-  margin-left:-9px;
-  margin-top:29px;
-  margin-bottom:12px;
-}
-
-a.googlemaps-link{
-  display:block;
-  width:710px;
-  line-height:27px;
-  margin-left:-10px;
-  letter-spacing:1px;
-  text-align:center;
-  text-transform:uppercase;
-  background-color:#eaf4f7;
-  color: #87adb8;
-}
-
 .print-button{
   position:absolute;
   top:66px;
@@ -277,6 +247,68 @@ a.googlemaps-link{
   letter-spacing:2px;
   padding-right:15px;
 }
+hr.layer-shadow{
+  height:10px;
+  margin-top:26px;
+  border:none;
+  width:774px;
+  margin-left:-42px;
+  -moz-border-radius: 0 0 6px 6px;
+  -moz-box-shadow: 0 5px 5px 0px rgba(35,97,116,0.14);
+  -webkit-box-shadow: 0 5px 5px 0px rgba(35,97,116,0.14);
+  box-shadow: 0 5px 5px 0px rgba(35,97,116,0.14);
+  border-radius: 0 0 6px 6px;
+}
+
+/******************************************************************
+PAGE SPECIFIC STYLES
+******************************************************************/
+/*HOME*/
+body.home{
+/*  background-image: url(dev/pgsm_home_v3b.png);*/
+}
+body.home #content article{
+  position:relative;
+  float:left;
+  width:500px;
+  margin-right: 22px;
+  margin-top:13px;
+}
+body.home #content h2.entry-title{
+  display:none;
+}
+body.home #content iframe{
+  max-width: 490px;
+  margin-bottom: 27px;
+}
+
+/*LOCALIZACAO*/
+body.slug-localizacao{
+/*  background-image: url(dev/pgsm_11_mapa_v1.png);*/
+}
+.googlemaps-map{
+  margin-left:-13px;
+  margin-top:5px;
+  margin-bottom:10px;
+}
+a.googlemaps-link{
+  display:block;
+  width:710px;
+  line-height:30px;
+  margin-left:-13px;
+  letter-spacing:1.3px;
+  text-align:center;
+  text-transform:uppercase;
+  background-color:#eaf4f7;
+  color: #87adb8;
+  font-size:13px;
+}
+
+/*SITES DE INTERESSE*/
+body.slug-sites_de_interesse{
+/*  background-image: url(dev/pgsm_14_sites-de-interesse_v1.png);*/
+}
+
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
@@ -357,6 +389,7 @@ footer[role=contentinfo]{
   margin-left:-282px;
   clear:both;
   background-color: none;
+  color: #25667a;
 }
 footer[role=contentinfo] h2{
   margin-bottom: 4px;
