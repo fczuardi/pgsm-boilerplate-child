@@ -249,7 +249,7 @@ body #content article .entry-title{
 }
 .layer-shadow{
   height:16px;
-  margin-top:26px;
+  margin-top:30px;
   width:774px;
   margin-left:-42px;
   margin-bottom:0px;
@@ -315,6 +315,20 @@ body.slug-sites_de_interesse{
 /*  background-image: url(dev/pgsm_14_sites-de-interesse_v1.png);*/
 }
 
+body.slug-sites_de_interesse .logos{
+  list-style:none;
+  margin-left:29px;
+  margin-top:34px;
+  margin-bottom:30px;
+}
+body.slug-sites_de_interesse .logos li{
+  display:block;
+  float:left;
+  margin-bottom:-5px;
+}
+body.slug-sites_de_interesse .logos li.last{
+  float:none;
+}
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
