@@ -28,7 +28,6 @@ get_header(); ?>
   					  <?php print_link(); ?>
 					    </div>
 					  <?php } ?> 
-						<?php edit_post_link( __( 'Edit', 'boilerplate' ), '', '' ); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-## -->
 <?php endwhile; ?>

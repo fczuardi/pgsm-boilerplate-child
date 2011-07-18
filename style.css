@@ -157,12 +157,15 @@ NAVIGATION LEFT SIDEBAR
   padding-bottom:12px;
 }
 #access .menu li{
-  padding: 0 23px 0 23px;
-  line-height: 30px;
+  padding: 8px 23px 0 23px;
+  height: 21px;
   letter-spacing:1.3px;
 }
-#access .menu li:hover{
+#access .menu li.current_page_item{
   background-color:#3c7a8f;
+}
+#access .menu li:hover{
+  background-color:#418095;
 }
 #access .menu a{
   color: #fff;
@@ -206,7 +209,7 @@ CONTENT
   box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
   border-radius: 0 0 6px 6px;
 }
-body #content article .entry-title{
+body #content .entry-title{
   text-transform: uppercase;
   font-size:18px;
   font-weight:normal;
@@ -221,6 +224,18 @@ body #content article .entry-title{
   letter-spacing: 2px;
   font-weight: normal;
   color: #92B2BC;
+}
+#content .post h2 {
+  letter-spacing: 1.8px;
+  margin-left:3px;
+  margin-top:7px;
+  margin-bottom:0px;
+}
+#content time{
+  font-size:12px;
+}
+#content .post time {
+  margin-left:3px;
 }
 #content article{
   background-color: none;
@@ -249,7 +264,6 @@ body #content article .entry-title{
 }
 .layer-shadow{
   height:16px;
-  margin-top:30px;
   width:774px;
   margin-left:-42px;
   margin-bottom:0px;
@@ -300,8 +314,10 @@ body.slug-localizacao{
 a.googlemaps-link{
   display:block;
   width:710px;
-  line-height:30px;
+  height:25px;
+  padding-top:7px;
   margin-left:-13px;
+  margin-bottom:8px;
   letter-spacing:1.3px;
   text-align:center;
   text-transform:uppercase;
@@ -329,6 +345,25 @@ body.slug-sites_de_interesse .logos li{
 body.slug-sites_de_interesse .logos li.last{
   float:none;
 }
+body.slug-sites_de_interesse .layer-shadow{
+  margin-top:30px;
+}
+/*NOTICIAS*/
+body.slug-noticias{
+/*  background-image: url(dev/ref_noticias.png);*/
+}
+body.slug-noticias .entry-title{
+  float:left;
+}
+body.slug-noticias #searchform{
+  float:right;
+  margin-top:6px;
+  height:48px;
+}
+body.slug-noticias .layer-shadow{
+  margin-top:3px;
+}
+
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
@@ -385,7 +420,7 @@ RIGHT SIDEBAR (HOME)
 #content ul.xoxo time{
   text-transform: capitalize;
   display: block;
-  font-size: 12px;
+/*  font-size: 12px;*/
   line-height: 18px;
   margin-top: 11px;
   margin-bottom: 1px;
