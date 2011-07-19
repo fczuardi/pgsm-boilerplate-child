@@ -14,6 +14,9 @@ function my_child_theme_setup() {
   remove_action( 'widgets_init', 'boilerplate_widgets_init' );
   add_action('widgets_init', 'pgsm_widgets_init');
   add_action('admin_menu', 'mt_add_pages');
+  // autop is lame, remove it
+  remove_filter('the_content', 'wpautop');
+  remove_filter('the_excerpt', 'wpautop');
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
