@@ -203,7 +203,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-/*  opacity:0.5;*/
+  opacity:0.5;
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -360,18 +360,18 @@ body.slug-sites_de_interesse .layer-shadow{
   margin-top:30px;
 }
 /*NOTICIAS*/
-body.slug-noticias{
-/*  background-image: url(dev/ref_noticias.png);*/
+body.blog{
+  background-image: url(dev/ref_noticias.png);
 }
-body.slug-noticias .entry-title{
+body.blog .entry-title{
   float:left;
 }
-body.slug-noticias #searchform{
+body.blog #searchform{
   float:right;
   margin-top:6px;
   height:48px;
 }
-body.slug-noticias .layer-shadow{
+body.blog .layer-shadow{
   margin-top:3px;
 }
 

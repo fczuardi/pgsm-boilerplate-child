@@ -90,6 +90,11 @@ function mt_settings_page() {
               var_dump($meta['template']);
               update_post_meta($pageid, '_wp_page_template', $meta['template'] . '.php');
             }
+            if ($meta['option']) {
+              if (($meta['option'] == 'page_on_front') || ($meta['option'] == 'page_for_posts')){
+                update_option( $meta['option'], $pageid );
+              }
+            }
           }
         } // while
         closedir($handle);

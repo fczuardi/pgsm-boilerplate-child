@@ -4,7 +4,7 @@ Template Name: Página de Notícias
 */
 
 get_header(); ?>
-<h1 class="entry-title"><?php the_title(); ?></h1>
+<h1 class="entry-title">Notícias</h1>
 <?php get_search_form( true ); ?>
 <div class="layer-shadow"><hr /></div>
 <?php
