@@ -242,13 +242,17 @@ body #content .entry-title{
 #content article{
   background-color: none;
 }
+#content article h3,
 #content article p{
-  font-size:16px;
-  margin-left:4px;
-  line-height:22px;
+  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size:14px;
+  font-weight:normal;
+  line-height:21px;
+  margin-bottom:21px;
 }
-.entry-content h2{
-  margin-left:2px;
+#content article h3{
+  color:#000;
+  margin-bottom:0px;
 }
 .entry{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -391,7 +395,6 @@ body.blog .publicado-por{
   font-size: 12px;
 }
 body.blog .entry{
-  margin-left:4px;
   margin-top:10px;
   margin-bottom:22px;
 }
