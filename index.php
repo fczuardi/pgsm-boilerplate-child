@@ -1,8 +1,12 @@
 <?php
 /*
 Template Name: Página de Notícias
-*/
 
+ ESTA NÃO É A HOME PAGE!
+ APESAR DE SE CHAMAR INDEX.PHP ISTO AQUI É O TEMPLATE DA PÁGINA DE NOTÍCIAS
+ 
+Baseado no exemplo: http://codex.wordpress.org/Pages#A_Page_of_Posts
+*/
 get_header(); ?>
 <h1 class="entry-title">Notícias</h1>
 <?php get_search_form( true ); ?>
@@ -25,12 +29,15 @@ $args=array(
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
   	    <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
           <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-          <time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time>
-        </div>
+          <p><time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time> : <span class="publicado-por"><?php echo _e('Publicado por', 'pgsm-boilerplate-child'); ?> <?php the_author() ?></span></p>
+          <div class="layer-shadow light"><hr /></div>
+          <div class="entry">
+            <?php the_content('Read the rest of this entry »'); ?>
+          </div>        </div>
         <div class="layer-shadow"><hr /></div>
       <?php endwhile; ?>
       <div class="navigation">
-        <div class="alignleft"><?php next_posts_link('Mais Notícias') ?></div>
+        <div class="line-button"><?php next_posts_link('Mais Notícias') ?></div>
       </div>
     <?php else : ?>
   		<h2 class="center">Not Found</h2>

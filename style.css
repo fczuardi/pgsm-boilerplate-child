@@ -203,7 +203,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-  opacity:0.5;
+/*  opacity:0.5;*/
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -250,6 +250,15 @@ body #content .entry-title{
 .entry-content h2{
   margin-left:2px;
 }
+.entry{
+  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size:14px;
+  line-height:21px;
+}
+.entry p{
+  margin-bottom:21px;
+}
+
 .print-button{
   position:absolute;
   top:66px;
@@ -280,6 +289,20 @@ body #content .entry-title{
   -webkit-box-shadow: 0 3px 7px 0px rgba(37,102,122,0.21);
   box-shadow: 0 3px 7px 0px rgba(37,102,122,0.21);
   border-radius: 0 0 6px 6px;
+}
+.line-button a{
+  display:block;
+  width:710px;
+  height:22px;
+  padding-top:10px;
+  margin-left:-9px;
+  margin-bottom:8px;
+  letter-spacing:1.3px;
+  text-align:center;
+  text-transform:uppercase;
+  background-color:#eaf4f7;
+  color: #87adb8;
+  font-size:13px;
 }
 
 /******************************************************************
@@ -315,26 +338,12 @@ body.home #content iframe{
 
 /*LOCALIZACAO*/
 body.slug-localizacao{
-/*  background-image: url(dev/pgsm_11_mapa_v1.png);*/
+  background-image: url(dev/pgsm_11_mapa_v1.png);
 }
 .googlemaps-map{
   margin-left:-13px;
   margin-top:5px;
   margin-bottom:10px;
-}
-a.googlemaps-link{
-  display:block;
-  width:710px;
-  height:25px;
-  padding-top:7px;
-  margin-left:-13px;
-  margin-bottom:8px;
-  letter-spacing:1.3px;
-  text-align:center;
-  text-transform:uppercase;
-  background-color:#eaf4f7;
-  color: #87adb8;
-  font-size:13px;
 }
 
 /*SITES DE INTERESSE*/
@@ -374,7 +383,21 @@ body.blog #searchform{
 body.blog .layer-shadow{
   margin-top:3px;
 }
-
+body.blog .layer-shadow.light{
+  opacity:0.3;
+}
+body.blog .publicado-por{
+  margin-left:10px;
+  font-size: 12px;
+}
+body.blog .entry{
+  margin-left:4px;
+  margin-top:10px;
+  margin-bottom:22px;
+}
+body.blog .navigation{
+  margin-top:20px;
+}
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
