@@ -50,15 +50,13 @@ function mt_settings_page() {
             $page_content = file_get_contents(get_stylesheet_directory() . $content_pages_path . '/' . $file);
 
             //extract metadata
-            preg_match("/^\<!--([^∫]*)-->/", $page_content, $matches);
+            preg_match("/^\<!--([^∫]*)-->/U", $page_content, $matches);
             $meta_lines = explode("\n", trim($matches[1]));
             $meta = array();
             foreach ($meta_lines as $line){
               preg_match("/([^∫]*)\s*\:\s*(.*)/", $line, $parts);
               $meta[strtolower($parts[1])] = $parts[2];
             }
-            
-            echo '<br>---<br>';
             if (is_null($page)){
               $updated_page = array();
               $updated_page['post_type']  = 'page';
@@ -69,7 +67,7 @@ function mt_settings_page() {
             }
             $updated_page['post_title'] = $meta['title'];
             $updated_page['post_status'] = 'publish';
-            $updated_page['post_content'] = $page_content;
+            $updated_page['post_content'] = substr($page_content,strlen($matches[0])+1);
             $updated_page['menu_order'] = (int) $name_parts[0]; //If new post is a page, sets the order should it appear in the tabs.
             //   'menu_order' => [ <order> ] //If new post is a page, sets the order should it appear in the tabs.
             //   'comment_status' => [ 'closed' | 'open' ] // 'closed' means no comments.
@@ -89,8 +87,6 @@ function mt_settings_page() {
               wp_update_post($updated_page);
             }
             if ($meta['template']) {
-              echo '<br>TEMPLATE UPDATE<br>';
-              var_dump($meta['template']);
               update_post_meta($pageid, '_wp_page_template', $meta['template'] . '.php');
             }
             if ($meta['option']) {
