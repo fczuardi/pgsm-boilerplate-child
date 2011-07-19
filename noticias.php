@@ -40,5 +40,4 @@ $args=array(
   	$wp_query = $temp;  //reset back to original query
 ?>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

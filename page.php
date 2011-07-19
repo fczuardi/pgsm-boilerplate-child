@@ -31,5 +31,4 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-## -->
 <?php endwhile; ?>
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
