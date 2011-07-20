@@ -9,9 +9,17 @@ Version:        0.1.0
 */
 
 @import url("../boilerplate/style.css");
-
+@font-face {
+	font-family: 'FrancophilSans';
+	src: url('FrancophilSans.ttf');
+}
+@font-face {
+	font-family: 'FrancophilSans';
+	font-weight: bold;
+	src: url('FrancophilSans-Bold.ttf');
+}
 body {
-  font-family: "Myriad Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Myriad Pro", "FrancophilSans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   color: #666;
   background-color:#f3f3f3;
   background-repeat: no-repeat;
