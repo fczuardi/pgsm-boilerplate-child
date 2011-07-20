@@ -17,8 +17,69 @@ function my_child_theme_setup() {
   // autop is lame, remove it
   remove_filter('the_content', 'wpautop');
   remove_filter('the_excerpt', 'wpautop');
+  add_action('init', 'create_type_disciplina');
+  add_filter('the_editor_content', 'my_preset_content');
+  add_filter('default_title', 'my_preset_title');
+  
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
+
+//CUSTOM POST TYPES
+function create_type_disciplina() {
+  $labels = array(
+      'name' => _x('Disciplinas', 'post type general name', 'pgsm-boilerplate-child'),
+      'singular_name' => _x('Disciplina', 'post type singular name', 'pgsm-boilerplate-child'),
+      'add_new' => _x('Adicionar Nova', 'disciplina', 'pgsm-boilerplate-child'),
+      'add_new_item' => __('Adicionar Nova Disciplina', 'pgsm-boilerplate-child'),
+      'edit_item' => __('Editar Disciplina', 'pgsm-boilerplate-child'),
+      'new_item' => __('Nova Disciplina', 'pgsm-boilerplate-child'),
+      'view_item' => __('Visualizar Disciplina', 'pgsm-boilerplate-child'),
+      'search_items' => __('Pesquisar Disciplinas', 'pgsm-boilerplate-child'),
+      'not_found' =>  __('Nenhuma disciplica encontrada', 'pgsm-boilerplate-child'),
+      'not_found_in_trash' => __('Não há disciplinas na lixeira', 'pgsm-boilerplate-child'), 
+      'parent_item_colon' => '',
+      'menu_name' => 'Disciplinas'
+    );  
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'publicly_queryable' => true,
+      'show_ui' => true, 
+      'show_in_menu' => true, 
+      'query_var' => true,
+      'rewrite' => array('slug' => 'disciplinas'),
+      // 'rewrite' => true,
+      'capability_type' => 'post',
+      'has_archive' => true, 
+      'hierarchical' => false,
+      'menu_position' => null,
+      'supports' => array('title','editor','author')
+      // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
+    );
+  register_post_type( 'pgsm_disciplina', $args);
+}
+
+function my_preset_title() {
+  global $post;
+  if ($_REQUEST['post_type'] == 'pgsm_disciplina' ) {
+      $default_title = file_get_contents(get_stylesheet_directory() . '/custom_post_type_prefill/disciplina.title.html');
+  } else {
+      $default_title = '';
+  }
+  return $default_title;
+}
+
+function my_preset_content() {
+    global $post;
+    if ( $post->post_content == '' and $post->post_type == 'pgsm_disciplina' ) {
+        $default_content = file_get_contents(get_stylesheet_directory() . '/custom_post_type_prefill/disciplina.content.html');
+    } else {
+        $default_content = $post->post_content;
+    }
+    return $default_content;
+    // return $post->post_type;
+}
+
 
 // Código emprestado de http://codex.wordpress.org/Administration_Menus
 function mt_add_pages() {
