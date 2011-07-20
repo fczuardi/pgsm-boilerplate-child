@@ -27,13 +27,14 @@ $args=array(
   $wp_query = new WP_Query($args);
   if( have_posts() ) : 
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-  	    <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+  	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
           <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
           <p><time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time> : <span class="publicado-por"><?php echo _e('Publicado por', 'pgsm-boilerplate-child'); ?> <?php the_author() ?></span></p>
           <div class="layer-shadow light"><hr /></div>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
-          </div>        </div>
+          </div>
+        </div>
         <div class="layer-shadow"><hr /></div>
       <?php endwhile; ?>
       <div class="navigation">

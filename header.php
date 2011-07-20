@@ -32,6 +32,7 @@
 		if ($post->post_name){
       $extraclasses = 'slug-'.$post->post_name;
 		}
+    wp_enqueue_script("jquery");
 		wp_head();
 ?>
 	</head>

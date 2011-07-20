@@ -15,6 +15,7 @@
         <a class="email" href="mailto:pg_saudemental@rnp.fmrp.usp.br">pg_saudemental@rnp.fmrp.usp.br</a>
       </p>
 		</footer><!-- footer -->
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory');?>/js/main.js"></script>
 <?php
 	/* Always have wp_footer() just before the closing </body>
 	 * tag of your theme, or you will break many plugins, which
