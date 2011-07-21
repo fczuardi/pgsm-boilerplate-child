@@ -235,7 +235,7 @@ body #content .entry-title{
   font-weight: normal;
   color: #92B2BC;
 }
-#content .post h2 {
+#content .hentry h2 {
   letter-spacing: 1.8px;
   margin-left:3px;
   margin-top:7px;
@@ -250,17 +250,20 @@ body #content .entry-title{
 #content article{
   background-color: none;
 }
-#content article h3,
-#content article p{
+#content h3,
+#content p{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
   font-size:14px;
   font-weight:normal;
   line-height:21px;
   margin-bottom:21px;
 }
-#content article h3{
+#content h3{
   color:#000;
   margin-bottom:0px;
+}
+#content ul{
+  margin-bottom:21px;
 }
 .entry{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -344,7 +347,7 @@ PAGE SPECIFIC STYLES
 ******************************************************************/
 /*HOME*/
 body.home{
-  background-image: url(dev/pgsm_home_v3b.png);
+/*  background-image: url(dev/pgsm_home_v3b.png);*/
 }
 body.home #content article{
   position:relative;
@@ -372,7 +375,7 @@ body.home #content iframe{
 
 /*LOCALIZACAO*/
 body.slug-localizacao{
-  background-image: url(dev/pgsm_11_mapa_v1.png);
+/*  background-image: url(dev/pgsm_11_mapa_v1.png);*/
 }
 .googlemaps-map{
   margin-left:-13px;
@@ -402,13 +405,15 @@ body.slug-sites_de_interesse .logos li.last{
 body.slug-sites_de_interesse .layer-shadow{
   margin-top:30px;
 }
-/*NOTICIAS*/
+/*NOTICIAS, DISCIPLINAS */
 body.blog{
-  background-image: url(dev/ref_noticias.png);
+/*  background-image: url(dev/ref_noticias.png);*/
 }
+body.slug-disciplinas .entry-title,
 body.blog .entry-title{
   float:left;
 }
+body.slug-disciplinas #searchform,
 body.blog #searchform{
   float:right;
   margin-top:6px;
@@ -422,6 +427,10 @@ body.blog .publicado-por{
   font-size: 12px;
 }
 body.blog .entry{
+  margin-top:10px;
+  margin-bottom:22px;
+}
+body.slug-disciplinas .entry{
   margin-top:10px;
   margin-bottom:22px;
 }

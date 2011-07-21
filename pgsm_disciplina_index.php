@@ -1,30 +1,27 @@
 <?php
 /*
-Template Name: Página de Notícias
-
- ESTA NÃO É A HOME PAGE!
- APESAR DE SE CHAMAR INDEX.PHP ISTO AQUI É O TEMPLATE DA PÁGINA DE NOTÍCIAS
- 
-Baseado no exemplo: http://codex.wordpress.org/Pages#A_Page_of_Posts
+Template Name: Listagem de Disciplinas
 */
 get_header(); ?>
-<h1 class="entry-title">Notícias</h1>
+<h1 class="entry-title">Disciplinas</h1>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>
 		<input type="search" id="s" name="s" value="" placeholder="Pesquisar por...">
 		<input type="submit" value="Pesquisar" id="searchsubmit">
-    <input type="hidden" name="post_type" value="post" />
+    <input type="hidden" name="post_type" value="pgsm_disciplina" />
 		</div>
 </form>
 <div class="layer-shadow"><hr /></div>
+
 <?php
-$post_per_page = 2;
+$post_per_page = 3;
 $do_not_show_stickies = 1;
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args=array(
-    // 'category__in' => array($cat),
+    'paged' => $paged,
+    'post_type' => 'pgsm_disciplina',
     'orderby' => 'date',
     'order' => 'DESC',
-    'paged' => $paged,
     'posts_per_page' => $post_per_page,
     'caller_get_posts' => $do_not_show_stickies
   );
@@ -35,7 +32,6 @@ $args=array(
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
   	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
           <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-          <p><time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time> : <span class="publicado-por"><?php echo _e('Publicado por', 'pgsm-boilerplate-child'); ?> <?php the_author() ?></span></p>
           <div class="layer-shadow light"><hr /></div>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
@@ -44,14 +40,14 @@ $args=array(
         <div class="layer-shadow"><hr /></div>
       <?php endwhile; ?>
       <div class="navigation">
-        <div class="line-button"><?php next_posts_link('Mais Notícias') ?></div>
+        <div class="line-button"><?php next_posts_link('Mais Disciplinas') ?></div>
       </div>
     <?php else : ?>
   		<h2 class="center">Not Found</h2>
   		<p class="center">Sorry, but you are looking for something that isn't here.</p>
   		<?php get_search_form(); ?>
   	<?php endif; 
-  	$wp_query = $temp;  //reset back to original query
+    $wp_query = $temp;  //reset back to original query
 ?>
 
 <?php get_footer(); ?>

@@ -17,14 +17,46 @@ function my_child_theme_setup() {
   // autop is lame, remove it
   remove_filter('the_content', 'wpautop');
   remove_filter('the_excerpt', 'wpautop');
+  //custom type disciplina
   add_action('init', 'create_type_disciplina');
+  //customizacoes para os custom types
+  add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
-  
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
+
 //CUSTOM POST TYPES
+/*
+
+O jeito que eu estou usando custom types estava conflitando com a opção do
+wordpress gerenciar páginas de arquivos de custom type posts. Então a solução que
+eu arranjei foi:
+
+1- definir os tipos customizados usando o parametro 'has_archive' => false
+2- fazer uma página (post tipo page) para ser a "home do post daquele tipo"
+3- esta pagina segue um template que é o que cuida da query correta para listagem e paginacao
+4- finalmente, eu coloco esta função abaixo para interceptar a chamada para uma url tipo
+/disciplinas/page/2, que normalmente seria interpretada como "uma disciplina de slug page"
+o que é errado, e reescrevo a querystring para que a paginacao seja repassada para
+a "home do custom type" que ja está preparada para saber o que fazer
+
+Solução inspirada em http://barefootdevelopment.blogspot.com/2007/11/fix-for-wordpress-paging-problem.html
+*/
+function filter_pagination_for_custom_types($query_string){
+  if ($query_string['pgsm_disciplina'] == 'page'){
+    $paged = str_replace('/', '', $query_string['page']);
+    // replace querystring
+    $query_string = array(
+      'paged' => $paged,
+      'pagename' => 'disciplinas'
+    );
+  }
+    return $query_string;
+}
+
+
 function create_type_disciplina() {
   $labels = array(
       'name' => _x('Disciplinas', 'post type general name', 'pgsm-boilerplate-child'),
@@ -48,15 +80,15 @@ function create_type_disciplina() {
       'show_in_menu' => true, 
       'query_var' => true,
       'rewrite' => array('slug' => 'disciplinas'),
-      // 'rewrite' => true,
       'capability_type' => 'post',
-      'has_archive' => true, 
+      'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
       'supports' => array('title','editor','author')
       // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
   register_post_type( 'pgsm_disciplina', $args);
+  flush_rewrite_rules();
 }
 
 function my_preset_title() {
