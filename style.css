@@ -153,6 +153,7 @@ NAVIGATION LEFT SIDEBAR
   float:left;
 }
 #access .menu{
+/*  opacity:0.5;*/
   background-color: #46879b;
   margin-top: 19px;
   -moz-border-radius: 7px 0 0 7px;
@@ -165,38 +166,56 @@ NAVIGATION LEFT SIDEBAR
   padding-bottom:12px;
 }
 #access .menu li{
-  padding: 8px 23px 0 23px;
-  height: 21px;
   letter-spacing:1.3px;
 }
 #access .menu li.current_page_item{
   background-color:#3c7a8f;
 }
-#access .menu li:hover{
+#access .menu li a:hover{
   background-color:#418095;
 }
 #access .menu a{
+  line-height:30px;
+  padding-left:23px;
   color: #fff;
-  position:absolute;
+  display:block;
   width:100%;
 }
 #access .menu *{
   text-decoration: none;
   text-transform: uppercase;
 }
-#access .menu .children li:hover{
-  background: none;
-}
 #access .menu .children{
-  background-color: #fff;
-  margin: 0 -23px 0 -23px;
-  padding-left: 13px;
+  display:none;
 }
-#access .menu .children:hover{
+#access .menu  li.parent.opened .children{
+  display:block;
+}
+#access .menu li.parent.opened{
+  background-color:#fff;
+  margin-top:10px;
+  padding-top:19px;
+}
+#access .menu li.parent.opened a{
+  color: #3591ad;
+}
+#access .menu li.parent.opened>a:hover{
+    background: none;
+}
+#access .menu .parent.opened .children{
+  background-color: #fff;
+  padding-bottom:11px;
+  margin-bottom:19px;
+}
+#access .menu .parent.opened .children a{
+  color: #3591ad;
+  padding-left: 36px;
+}
+#access .menu .parent.opened .children .current_page_item{
   background-color:#eaf4f7;
 }
-#access .menu .children a{
-  color: #3591ad;
+#access .menu .parent.opened .children a:hover{
+  background-color:#eaf4f7;
 }
 
 /******************************************************************

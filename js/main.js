@@ -1,20 +1,25 @@
 jQuery(document).ready(function($) {
-    // $() will work as an alias for jQuery() inside of this function
-    // alert('foo!');
-    $('.collapsible').bind('click', function(event){
-      event.preventDefault();
-      if ($(event.currentTarget).hasClass('closed')){
-        $('.collapsible').each(function(i, e){
-          if (e === event.currentTarget){
-            $(e).removeClass('closed');
-          }else {
-            $(e).addClass('closed');
-          }
-        });
-      } else{
-        $('.collapsible').each(function(i, e){
-            $(e).addClass('closed');
-        });
-      }
-    });
+  //modify navigation menu classes
+  $('#access .menu li:has(.children)').addClass('parent')
+  $('.current_page_parent').addClass('opened')
+  $('.current_page_item.parent').addClass('opened')
+  
+  
+  //apply collapsible behavior for colapsible post list elements
+  $('.collapsible').bind('click', function(event){
+    event.preventDefault();
+    if ($(event.currentTarget).hasClass('closed')){
+      $('.collapsible').each(function(i, e){
+        if (e === event.currentTarget){
+          $(e).removeClass('closed');
+        }else {
+          $(e).addClass('closed');
+        }
+      });
+    } else{
+      $('.collapsible').each(function(i, e){
+          $(e).addClass('closed');
+      });
+    }
+  });
 });
