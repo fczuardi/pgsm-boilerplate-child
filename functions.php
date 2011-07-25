@@ -17,8 +17,9 @@ function my_child_theme_setup() {
   // autop is lame, remove it
   remove_filter('the_content', 'wpautop');
   remove_filter('the_excerpt', 'wpautop');
-  //custom type disciplina
+  //custom types
   add_action('init', 'create_type_disciplina');
+  add_action('init', 'create_type_orientador');
   //customizacoes para os custom types
   add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
@@ -28,35 +29,38 @@ add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
 
 //CUSTOM POST TYPES
-/*
-
-O jeito que eu estou usando custom types estava conflitando com a opção do
-wordpress gerenciar páginas de arquivos de custom type posts. Então a solução que
-eu arranjei foi:
-
-1- definir os tipos customizados usando o parametro 'has_archive' => false
-2- fazer uma página (post tipo page) para ser a "home do post daquele tipo"
-3- esta pagina segue um template que é o que cuida da query correta para listagem e paginacao
-4- finalmente, eu coloco esta função abaixo para interceptar a chamada para uma url tipo
-/disciplinas/page/2, que normalmente seria interpretada como "uma disciplina de slug page"
-o que é errado, e reescrevo a querystring para que a paginacao seja repassada para
-a "home do custom type" que ja está preparada para saber o que fazer
-
-Solução inspirada em http://barefootdevelopment.blogspot.com/2007/11/fix-for-wordpress-paging-problem.html
-*/
-function filter_pagination_for_custom_types($query_string){
-  if ($query_string['pgsm_disciplina'] == 'page'){
-    $paged = str_replace('/', '', $query_string['page']);
-    // replace querystring
-    $query_string = array(
-      'paged' => $paged,
-      'pagename' => 'disciplinas'
+function create_type_orientador() {
+  $labels = array(
+      'name' => _x('Orientadores', 'post type general name', 'pgsm-boilerplate-child'),
+      'singular_name' => _x('Orientador', 'post type singular name', 'pgsm-boilerplate-child'),
+      'add_new' => _x('Adicionar Novo', 'orientador', 'pgsm-boilerplate-child'),
+      'add_new_item' => __('Adicionar Novo Orientador', 'pgsm-boilerplate-child'),
+      'edit_item' => __('Editar Orientador', 'pgsm-boilerplate-child'),
+      'new_item' => __('Novo Orientador', 'pgsm-boilerplate-child'),
+      'view_item' => __('Visualizar Orientador', 'pgsm-boilerplate-child'),
+      'search_items' => __('Pesquisar Orientadores', 'pgsm-boilerplate-child'),
+      'not_found' =>  __('Nenhum orientador encontrado', 'pgsm-boilerplate-child'),
+      'not_found_in_trash' => __('Não há orientadores na lixeira', 'pgsm-boilerplate-child'), 
+      'parent_item_colon' => '',
+      'menu_name' => 'Orientadores'
+    );  
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'publicly_queryable' => true,
+      'show_ui' => true, 
+      'show_in_menu' => true, 
+      'query_var' => true,
+      'rewrite' => array('slug' => 'orientadores'),
+      'capability_type' => 'post',
+      'has_archive' => false, //é false mesmo, nao questione.
+      'hierarchical' => false,
+      'menu_position' => null,
+      'supports' => array('title','editor','author')
+      // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
-  }
-    return $query_string;
+  register_post_type( 'pgsm_orientador', $args);
 }
-
-
 function create_type_disciplina() {
   $labels = array(
       'name' => _x('Disciplinas', 'post type general name', 'pgsm-boilerplate-child'),
@@ -111,6 +115,37 @@ function my_preset_content() {
     return $default_content;
     // return $post->post_type;
 }
+/*
+
+O jeito que eu estou usando custom types estava conflitando com a opção do
+wordpress gerenciar páginas de arquivos de custom type posts. Então a solução que
+eu arranjei foi:
+
+1- definir os tipos customizados usando o parametro 'has_archive' => false
+2- fazer uma página (post tipo page) para ser a "home do post daquele tipo"
+3- esta pagina segue um template que é o que cuida da query correta para listagem e paginacao
+4- finalmente, eu coloco esta função abaixo para interceptar a chamada para uma url tipo
+/disciplinas/page/2, que normalmente seria interpretada como "uma disciplina de slug page"
+o que é errado, e reescrevo a querystring para que a paginacao seja repassada para
+a "home do custom type" que ja está preparada para saber o que fazer
+
+Solução inspirada em http://barefootdevelopment.blogspot.com/2007/11/fix-for-wordpress-paging-problem.html
+*/
+function filter_pagination_for_custom_types($query_string){
+  if ($query_string['pgsm_disciplina'] == 'page'){
+    $paged = str_replace('/', '', $query_string['page']);
+    // replace querystring
+    $query_string = array(
+      'paged' => $paged,
+      'pagename' => 'disciplinas'
+    );
+  }
+    return $query_string;
+}
+
+
+
+
 
 
 // Código emprestado de http://codex.wordpress.org/Administration_Menus
