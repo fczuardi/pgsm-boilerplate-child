@@ -38,6 +38,9 @@ a:hover {
   text-decoration:underline;
 }
 
+::-moz-selection { background: #46879b; color:#fff; text-shadow: none; }
+::selection { background: #46879b; color:#fff; text-shadow: none; }
+
 /******************************************************************
 HEADER SYTLES
 ******************************************************************/
@@ -175,8 +178,9 @@ NAVIGATION LEFT SIDEBAR
   background-color:#418095;
 }
 #access .menu a{
-  line-height:30px;
+  line-height:29px;
   padding-left:23px;
+  padding-top:1px;
   color: #fff;
   display:block;
   width:100%;
@@ -196,11 +200,8 @@ NAVIGATION LEFT SIDEBAR
   margin-top:10px;
   padding-top:19px;
 }
-#access .menu li.parent.opened a{
-  color: #3591ad;
-}
-#access .menu li.parent.opened>a:hover{
-    background: none;
+#access .menu li.parent.opened>a{
+  color: #25667a;
 }
 #access .menu .parent.opened .children{
   background-color: #fff;
@@ -214,8 +215,9 @@ NAVIGATION LEFT SIDEBAR
 #access .menu .parent.opened .children .current_page_item{
   background-color:#eaf4f7;
 }
+#access .menu li.parent.opened>a:hover,
 #access .menu .parent.opened .children a:hover{
-  background-color:#eaf4f7;
+  background-color:#f4f9fb;
 }
 
 /******************************************************************
