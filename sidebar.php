@@ -36,9 +36,9 @@ if(is_front_page()) : ?>
 <li><h3>Entidades Relacionadas</h3>
 <div class="caixa-entidades">
   <ul>
-    <li><a href="http://www.capes.gov.br/"><img src="../wp-content/uploads/inicio/logo_capes_home.png" /></a></li>
-    <li><a href="http://www.cnpq.br/"><img src="../wp-content/uploads/inicio/logo_cnpq_home.png" /></a></li>
-    <li><a href="http://www.agencia.fapesp.br/"><img src="../wp-content/uploads/inicio/logo_fapesp_home.png" /></a></li>
+    <li><a href="http://www.capes.gov.br/"><img src="<?php bloginfo('wpurl'); ?>/wp-content/uploads/inicio/logo_capes_home.png" /></a></li>
+    <li><a href="http://www.cnpq.br/"><img src="<?php bloginfo('wpurl'); ?>/wp-content/uploads/inicio/logo_cnpq_home.png" /></a></li>
+    <li><a href="http://www.agencia.fapesp.br/"><img src="<?php bloginfo('wpurl'); ?>/wp-content/uploads/inicio/logo_fapesp_home.png" /></a></li>
   </ul>
 </div>
 </li>

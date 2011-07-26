@@ -340,11 +340,12 @@ body #content .entry-title{
 }
 .collapsible .entry{
   overflow:hidden;
-  -webkit-transition: height 2s ease-in-out;
-  	-moz-transition: height 2s ease-in-out;
-  	-o-transition: height 2s ease-in-out;
-  	-ms-transition: height 2s ease-in-out;
-  	transition: height 2s ease-in-out;  
+/*  -webkit-transition: height 2s ease-in-out;
+    -moz-transition: height 2s ease-in-out;
+    -o-transition: height 2s ease-in-out;
+    -ms-transition: height 2s ease-in-out;
+    transition: height 2s ease-in-out;  
+*/
 }
 .collapsible {
 /*  height:auto;*/
@@ -382,6 +383,9 @@ body.home #content article{
   width:500px;
   margin-right: 22px;
   margin-top:13px;
+}
+body.home #content article p{
+  font-size:12px;
 }
 body.home #content h2.entry-title{
   display:none;
@@ -491,7 +495,7 @@ RIGHT SIDEBAR (HOME)
   color: #92b2bc;
   text-transform: uppercase;
   font-weight:normal;
-  font-size:12;
+  font-size:12px;
   letter-spacing: 1.3px;
   margin-bottom: 20px;
   float: left;
