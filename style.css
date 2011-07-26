@@ -501,6 +501,7 @@ RIGHT SIDEBAR (HOME)
   font-family: "Myriad Pro","FrancophilSans",Arial,"Helvetica Neue",Helvetica,sans-serif;
   letter-spacing: 1.3px;
   margin-bottom: 20px;
+  line-height:13px;
   float: left;
 }
 #content ul.xoxo a{
