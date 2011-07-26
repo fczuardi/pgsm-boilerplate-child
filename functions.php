@@ -165,14 +165,16 @@ function mt_settings_page() {
     $content_pages_path = '/pages_content/pt';
     //loop through the portuguese content file directory
     if ($handle = opendir(get_stylesheet_directory() . $content_pages_path)) {
+        $page_ids = array();
         /* This is the correct way to loop over the directory. */
         while (false !== ($file = readdir($handle))) {
           $name_parts = explode('.', $file);
-          $page = get_page_by_path($name_parts[1]);
+          $page_path = implode('/', array_slice($name_parts, 1, -1));
+          $page = get_page_by_path($page_path);
           if ($name_parts[1] == '') {
             continue;
           }
-          echo $name_parts[1] . '<br>';
+          echo $page_path . '<br>';
           
           if ($_POST['update_pages'] == 'yes'){
             $page_content = file_get_contents(get_stylesheet_directory() . $content_pages_path . '/' . $file);
@@ -188,7 +190,7 @@ function mt_settings_page() {
             if (is_null($page)){
               $updated_page = array();
               $updated_page['post_type']  = 'page';
-              $updated_page['post_name'] = $name_parts[1];
+              $updated_page['post_name'] = $name_parts[count($name_parts)-2];
             } else {
               $updated_page = (array) $page;
               $has_pages = true;
@@ -197,6 +199,14 @@ function mt_settings_page() {
             $updated_page['post_status'] = 'publish';
             $updated_page['post_content'] = substr($page_content,strlen($matches[0])+1);
             $updated_page['menu_order'] = (int) $name_parts[0]; //If new post is a page, sets the order should it appear in the tabs.
+            if($meta['parent']){
+              // this will only work if the menu_order for the child comes after the parent
+              // I am doing this to prevent an extra query to get the id of a page from the slug
+              var_dump($page_ids);
+              echo '<br>---<br>';
+              $parentId = $page_ids[$meta['parent']];
+              $updated_page['post_parent'] = $parentId; //Sets the parent of the new post.
+            }
             //   'menu_order' => [ <order> ] //If new post is a page, sets the order should it appear in the tabs.
             //   'comment_status' => [ 'closed' | 'open' ] // 'closed' means no comments.
             //   'ping_status' => [ 'closed' | 'open' ] // 'closed' means pingbacks or trackbacks turned off
@@ -204,16 +214,18 @@ function mt_settings_page() {
             //   'post_author' => [ <user ID> ] //The user ID number of the author.
             //   'post_category' => [ array(<category id>, <...>) ] //Add some categories.
             //   'tags_input' => [ '<tag>, <tag>, <...>' ] //For tags.
-            //   'post_parent' => [ <post ID> ] //Sets the parent of the new post.
             if (is_null($page)){
+              echo 'insert<br>';
               $pageid = wp_insert_post ($updated_page);
               if ($pageid == 0) { 
                echo  'Add Page Failed <br>';
               }
             } else {
+              echo 'update<br>';
               $pageid = $updated_page['ID'];
               wp_update_post($updated_page);
             }
+            $page_ids[$page_path] = $pageid;
             if ($meta['template']) {
               update_post_meta($pageid, '_wp_page_template', $meta['template'] . '.php');
             }
