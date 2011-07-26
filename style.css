@@ -258,8 +258,11 @@ body #content .entry-title{
 }
 #content .hentry h2 {
   letter-spacing: 1.8px;
-  margin-left:3px;
+  margin-left:0px;
   margin-top:7px;
+  margin-bottom:30px;
+}
+#content .collapsible h2 {
   margin-bottom:0px;
 }
 #content time{
@@ -278,6 +281,9 @@ body #content .entry-title{
   font-weight:normal;
   line-height:21px;
   margin-bottom:21px;
+}
+#content p.time-and-author{
+  margin-bottom:0px;
 }
 #content h3{
   color:#000;
