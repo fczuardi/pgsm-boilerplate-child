@@ -33,7 +33,7 @@ if(is_front_page()) : ?>
 <?php endif; ?>
 <?php endif; ?>
 <ul class="xoxo">
-<li><h3>Entidades Relacionadas</h3>
+<li><h3>Entidades<br />Relacionadas</h3>
 <div class="caixa-entidades">
   <ul>
     <li><a href="http://www.capes.gov.br/"><img src="<?php bloginfo('wpurl'); ?>/wp-content/uploads/inicio/logo_capes_home.png" /></a></li>

@@ -386,6 +386,8 @@ body.home #content article{
 }
 body.home #content article p{
   font-size:12px;
+  margin-top:5px;
+  font-family: "Myriad Pro","FrancophilSans",Arial,"Helvetica Neue",Helvetica,sans-serif;
 }
 body.home #content h2.entry-title{
   display:none;
