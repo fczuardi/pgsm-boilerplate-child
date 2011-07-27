@@ -21,6 +21,7 @@ function my_child_theme_setup() {
   add_action('init', 'create_type_disciplina');
   add_action('init', 'create_type_orientador');
   //customizacoes para os custom types
+  add_filter('request', 'filter_request_for_custom_types_categories');
   add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
@@ -56,10 +57,12 @@ function create_type_orientador() {
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
+      'taxonomies' => array('category'),
       'supports' => array('title','editor','author')
       // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
   register_post_type( 'pgsm_orientador', $args);
+  flush_rewrite_rules();
 }
 function create_type_disciplina() {
   $labels = array(
@@ -115,6 +118,15 @@ function my_preset_content() {
     return $default_content;
     // return $post->post_type;
 }
+function filter_request_for_custom_types_categories($query_string){
+  if (($query_string['pgsm_orientador'] == 'credenciados') || ($query_string['pgsm_orientador'] == 'ex_orientadores')) {
+    $query_string['pagename'] = 'orientadores/' . $query_string['pgsm_orientador'];
+    unset($query_string['post_type']);
+    unset($query_string['name']);
+  }
+  return $query_string;
+}
+
 /*
 
 O jeito que eu estou usando custom types estava conflitando com a opção do
