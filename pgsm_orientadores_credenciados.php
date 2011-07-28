@@ -22,8 +22,8 @@ $args=array(
     'paged' => $paged,
     'post_type' => 'pgsm_orientador',
     'category_name' => 'credenciados',
-    'orderby' => 'date',
-    'order' => 'DESC',
+    'orderby' => 'title',
+    'order' => 'ASC',
     'posts_per_page' => $post_per_page,
     'caller_get_posts' => $do_not_show_stickies
   );
