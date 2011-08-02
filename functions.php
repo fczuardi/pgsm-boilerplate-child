@@ -53,12 +53,12 @@ function create_type_orientador() {
       'show_in_menu' => true, 
       'query_var' => true,
       'rewrite' => array('slug' => 'orientadores'),
-      'capability_type' => 'post',
+      'capability_type' => 'orientador',
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
       'taxonomies' => array('category'),
-      'supports' => array('title','editor','author')
+      'supports' => array('title','editor','author', 'custom-fields')
       // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
   register_post_type( 'pgsm_orientador', $args);
@@ -87,7 +87,7 @@ function create_type_disciplina() {
       'show_in_menu' => true, 
       'query_var' => true,
       'rewrite' => array('slug' => 'disciplinas'),
-      'capability_type' => 'post',
+      'capability_type' => 'disciplina',
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,

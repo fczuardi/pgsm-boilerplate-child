@@ -4,6 +4,7 @@ Template Name: Listagem de Orientadores Credenciados
 */
 get_header(); ?>
 <h1 class="entry-title">Orientadores Credenciados</h1>
+<h2>Lista Completa</h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>
 		<input type="search" id="s" name="s" value="" placeholder="Pesquisar por...">
