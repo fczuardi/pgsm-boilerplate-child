@@ -25,12 +25,91 @@ function my_child_theme_setup() {
   add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
+  //custom meta box
+  add_action( 'add_meta_boxes', 'add_orientador_custom_box' );
+  add_action( 'save_post', 'orientador_save_postdata' );
+  //custom style sheet for admin pages
+  add_action('admin_head', 'my_admin_head');  
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
+
+function my_admin_head() {
+  echo '<link rel="stylesheet" type="text/css" href="' . trailingslashit( get_stylesheet_directory_uri() ).'/wp-admin.css' . '">';
+}
+
+
+
+/* Adds a box to the main column on the Post and Page edit screens */
+function add_orientador_custom_box() {
+    add_meta_box( 
+        'orientador_titulo',
+        __( 'Prefixo', 'titulo acadêmico', 'pgsm-boilerplate-child' ),
+        'orientador_inner_custom_box',
+        'pgsm_orientador', 'side', 'high' 
+    );
+}
+/* Prints the box content */
+function orientador_inner_custom_box( $post ) {
+  // Use nonce for verification
+  wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
+
+  $prefixo = get_post_meta( $post->ID, '_prefixo', TRUE);
+  if (!$prefixo) $prefixo = 'Prof. Dr.';
+  ?>
+  
+  <label class="radio-label" for="graduacao_academica_dr">
+  <input type="radio" id="graduacao_academica_dr" name="_prefixo" value="Prof. Dr." <?php if ($prefixo == 'Prof. Dr.') echo "checked=1";?> />
+  <?php _e("Prof. Dr.", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="graduacao_academica_dra">
+  <input type="radio" id="graduacao_academica_dra" name="_prefixo" value="Profa. Dra." <?php if ($prefixo == 'Profa. Dra.') echo "checked=1";?> />
+  <?php _e("Profa. Dra.", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="graduacao_academica_prof">
+  <input type="radio" id="graduacao_academica_prof" name="_prefixo" value="Prof." <?php if ($prefixo == 'Prof.') echo "checked=1";?> />
+  <?php _e("Prof.", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="graduacao_academica_profa">
+  <input type="radio" id="graduacao_academica_profa" name="_prefixo" value="Profa." <?php if ($prefixo == 'Profa.') echo "checked=1";?> />
+  <?php _e("Profa.", 'pgsm-boilerplate-child' ); ?>
+  </label>
+  <?php
+}
+
+/* When the post is saved, saves our custom data */
+function orientador_save_postdata( $post_id ) {
+  // verify if this is an auto save routine. 
+  // If it is our form has not been submitted, so we dont want to do anything
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+      return;
+
+  // verify this came from the our screen and with proper authorization,
+  // because save_post can be triggered at other times
+
+  if ( !wp_verify_nonce( $_POST['pgsm-boilerplate-child-nonce'], plugin_basename( __FILE__ ) ) )
+      return;
+
+  
+  // Check permissions
+  if ( 'pgsm_orientador' == $_POST['post_type'] ) 
+  {
+    if ( !current_user_can( 'edit_orientador', $post_id ) )
+        return;
+  }
+
+  // OK, we're authenticated: we need to find and save the data
+
+  $mydata = $_POST['_prefixo'];
+  update_post_meta($post_id, '_prefixo', $mydata);
+}
 
 
 //CUSTOM POST TYPES
 function create_type_orientador() {
+  $capability_type_names = array('orientador', 'orientadores');
   $labels = array(
       'name' => _x('Orientadores', 'post type general name', 'pgsm-boilerplate-child'),
       'singular_name' => _x('Orientador', 'post type singular name', 'pgsm-boilerplate-child'),
@@ -53,7 +132,7 @@ function create_type_orientador() {
       'show_in_menu' => true, 
       'query_var' => true,
       'rewrite' => array('slug' => 'orientadores'),
-      'capability_type' => 'orientador',
+      'capability_type' => $capability_type_names,
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
@@ -63,8 +142,19 @@ function create_type_orientador() {
     );
   register_post_type( 'pgsm_orientador', $args);
   flush_rewrite_rules();
+  //add all capabilities to the admin role
+  $role = get_role( 'administrator' );
+  $role->add_cap( 'edit_' . $capability_type_names[0] );
+  $role->add_cap( 'edit_' . $capability_type_names[1] );
+  $role->add_cap( 'edit_other_' . $capability_type_names[1] );
+  $role->add_cap( 'publish_' . $capability_type_names[1] );
+  $role->add_cap( 'read_' . $capability_type_names[0] );
+  $role->add_cap( 'read_' . $capability_type_names[1] );
+  $role->add_cap( 'read_private_' . $capability_type_names[1] );
+  $role->add_cap( 'delete_' . $capability_type_names[0] );
 }
 function create_type_disciplina() {
+  $capability_type_names = array('disciplina', 'disciplinas');
   $labels = array(
       'name' => _x('Disciplinas', 'post type general name', 'pgsm-boilerplate-child'),
       'singular_name' => _x('Disciplina', 'post type singular name', 'pgsm-boilerplate-child'),
@@ -87,7 +177,7 @@ function create_type_disciplina() {
       'show_in_menu' => true, 
       'query_var' => true,
       'rewrite' => array('slug' => 'disciplinas'),
-      'capability_type' => 'disciplina',
+      'capability_type' => $capability_type_names,
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
@@ -96,6 +186,16 @@ function create_type_disciplina() {
     );
   register_post_type( 'pgsm_disciplina', $args);
   flush_rewrite_rules();
+  //add all capabilities to the admin role
+  $role = get_role( 'administrator' );
+  $role->add_cap( 'edit_' . $capability_type_names[0] );
+  $role->add_cap( 'edit_' . $capability_type_names[1] );
+  $role->add_cap( 'edit_other_' . $capability_type_names[1] );
+  $role->add_cap( 'publish_' . $capability_type_names[1] );
+  $role->add_cap( 'read_' . $capability_type_names[0] );
+  $role->add_cap( 'read_' . $capability_type_names[1] );
+  $role->add_cap( 'read_private_' . $capability_type_names[1] );
+  $role->add_cap( 'delete_' . $capability_type_names[0] );
 }
 
 function my_preset_title() {

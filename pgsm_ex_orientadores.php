@@ -33,7 +33,7 @@ $args=array(
   if( have_posts() ) : 
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
   	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
-          <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+          <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
           <div class="layer-shadow light"><hr /></div>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
