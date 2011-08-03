@@ -26,7 +26,7 @@ function my_child_theme_setup() {
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
   //custom meta box
-  add_action( 'add_meta_boxes', 'add_orientador_custom_box' );
+  add_action( 'add_meta_boxes', 'add_orientador_custom_boxes' );
   add_action( 'save_post', 'orientador_save_postdata' );
   //custom style sheet for admin pages
   add_action('admin_head', 'my_admin_head');  
@@ -37,19 +37,41 @@ function my_admin_head() {
   echo '<link rel="stylesheet" type="text/css" href="' . trailingslashit( get_stylesheet_directory_uri() ).'/wp-admin.css' . '">';
 }
 
-
-
-/* Adds a box to the main column on the Post and Page edit screens */
-function add_orientador_custom_box() {
-    add_meta_box( 
-        'orientador_titulo',
-        __( 'Prefixo', 'titulo acadêmico', 'pgsm-boilerplate-child' ),
-        'orientador_inner_custom_box',
-        'pgsm_orientador', 'side', 'high' 
-    );
+function add_orientador_custom_boxes() {
+  add_meta_box( 
+    'orientador_condicao',
+    __( 'Condição', 'tipo de orientador', 'pgsm-boilerplate-child' ),
+    'orientador_meta_box_condicao',
+    'pgsm_orientador', 'side', 'high' 
+  );
+  add_meta_box( 
+    'orientador_titulo',
+    __( 'Prefixo', 'titulo acadêmico', 'pgsm-boilerplate-child' ),
+    'orientador_meta_box_prefixo',
+    'pgsm_orientador', 'side', 'high' 
+  );
 }
-/* Prints the box content */
-function orientador_inner_custom_box( $post ) {
+
+function orientador_meta_box_condicao( $post ) {
+  // Use nonce for verification
+  wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
+  $condicao = get_post_meta( $post->ID, '_condicao', TRUE);
+  if (!$condicao) $condicao = 'credenciado';
+  ?>
+  
+  <label class="radio-label" for="condicao_credenciado">
+  <input type="radio" id="condicao_credenciado" name="_condicao" value="credenciado" <?php if ($condicao == 'credenciado') echo "checked=1";?> />
+  <?php _e("Credenciado", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="condicao_ex_orientador">
+  <input type="radio" id="condicao_ex_orientador" name="_condicao" value="ex_orientador" <?php if ($condicao == 'ex_orientador') echo "checked=1";?> />
+  <?php _e("Ex-orientador", 'pgsm-boilerplate-child' ); ?>
+  </label>
+  <?php
+}
+
+function orientador_meta_box_prefixo( $post ) {
   // Use nonce for verification
   wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
 
@@ -102,8 +124,12 @@ function orientador_save_postdata( $post_id ) {
 
   // OK, we're authenticated: we need to find and save the data
 
-  $mydata = $_POST['_prefixo'];
-  update_post_meta($post_id, '_prefixo', $mydata);
+  if ($_POST['_prefixo']){
+    update_post_meta($post_id, '_prefixo', $_POST['_prefixo']);
+  }
+  if ($_POST['_condicao']){
+    update_post_meta($post_id, '_condicao', $_POST['_condicao']);
+  }
 }
 
 
@@ -136,7 +162,7 @@ function create_type_orientador() {
       'has_archive' => false, //é false mesmo, nao questione.
       'hierarchical' => false,
       'menu_position' => null,
-      'taxonomies' => array('category'),
+      // 'taxonomies' => array('category'),
       'supports' => array('title','editor','author', 'custom-fields')
       // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
