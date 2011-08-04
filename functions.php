@@ -25,16 +25,97 @@ function my_child_theme_setup() {
   add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
-  //custom meta box
+  //custom meta boxes for custom post types
   add_action( 'add_meta_boxes', 'add_orientador_custom_boxes' );
   add_action( 'save_post', 'orientador_save_postdata' );
+  //custom user fields
+  add_action( 'show_user_profile', 'extra_profile_fields' );
+  add_action( 'edit_user_profile', 'extra_profile_fields' );
+  add_action( 'personal_options_update', 'save_extra_profile_fields' );
+  add_action( 'edit_user_profile_update', 'save_extra_profile_fields' );
   //custom style sheet for admin pages
-  add_action('admin_head', 'my_admin_head');  
+  add_action('admin_head', 'my_admin_head');
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
 
 function my_admin_head() {
   echo '<link rel="stylesheet" type="text/css" href="' . trailingslashit( get_stylesheet_directory_uri() ).'/wp-admin.css' . '">';
+}
+
+function extra_profile_fields( $user ) {?>
+
+<h3>Links relacionados</h3>
+
+	<table class="form-table">
+		<tr>
+			<th><label for="url_lattes">Currículo Lattes</label></th>
+			<td>
+				<input type="text" name="url_lattes" id="url_lattes" value="<?php echo esc_attr( get_the_author_meta( 'url_lattes', $user->ID ) ); ?>" class="url-field" /><br />
+				<span class="description">Exemplo: http://lattes.cnpq.br/2484665702538194 </span>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="url_pubmed">Pubmed</label></th>
+			<td>
+				<input type="text" name="url_pubmed" id="url_pubmed" value="<?php echo esc_attr( get_the_author_meta( 'url_pubmed', $user->ID ) ); ?>" class="url-field" /><br />
+				<span class="description">Exemplo: http://www.ncbi.nlm.nih.gov/pubmed?term=%22Zuardi%20AW%22%5BAuthor%5D </span>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="url_twitter">Twitter</label></th>
+			<td>
+				<input type="text" name="url_twitter" id="url_twitter" value="<?php echo esc_attr( get_the_author_meta( 'url_twitter', $user->ID ) ); ?>" class="url-field" /><br />
+				<span class="description">Exemplo: http://twitter.com/seu_username</span>
+			</td>
+		</tr>
+	</table>
+<h4>Outros Links Relacionados</h4>
+<p><?php 
+$other_links_value = get_the_author_meta( 'other_links', $user->ID );
+if ($other_links_value){
+  $other_links = json_decode($other_links_value, true);
+}
+?></p>
+<table>
+  <thead>
+    <td>Nome do site</td>
+    <td>Endereço</td>
+  </thead>
+  <tbody>
+    <?php
+    for ($i=0; $i<10; $i++){
+      ?>
+      <tr>
+        <td><input type="text" name="related_link_names[<?php echo $i; ?>]" value="<?php echo $other_links[$i][0]; ?>" /></td>
+        <td><input type="text" name="related_links[<?php echo $i; ?>]" class="url-field" value="<?php echo $other_links[$i][1]; ?>" /></td>
+      </tr>
+      <?php
+    }
+    ?>
+  </tbody>
+</table>
+<?php
+}
+
+function save_extra_profile_fields( $user_id ) {
+  if ( !current_user_can( 'edit_user', $user_id ) )
+    return false;
+  foreach(array('url_lattes', 'url_pubmed', 'url_twitter') as $field_name){
+    if ( $_POST[$field_name] ){
+      update_usermeta( $user_id, $field_name, $_POST[$field_name] );
+    }
+  }
+  if ($_POST['related_link_names']){
+    $related_links_json = "[";
+    $links = array();
+    foreach ($_POST['related_link_names'] as $index=>$site_name){
+      if ($_POST['related_links'][$index]){
+        $links[] = '["' . $site_name . '", "' . $_POST['related_links'][$index] . '"]';
+      }
+    }
+    $related_links_json .= implode(', ', $links) . "]";
+    update_usermeta( $user_id, 'other_links', $related_links_json );
+  }
 }
 
 function add_orientador_custom_boxes() {
@@ -134,6 +215,8 @@ function orientador_meta_box_username( $post ){
   <p>Caso o(a) orientador(a) ainda não se encontre na lista acima, <a href="/wp-admin/user-new.php">crie um novo usuário para ele(a)</a> e depois retorne aqui.</p>
   <?php
 }
+
+
 /* When the post is saved, saves our custom data */
 function orientador_save_postdata( $post_id ) {
   // verify if this is an auto save routine. 
