@@ -50,10 +50,15 @@ function add_orientador_custom_boxes() {
     'orientador_meta_box_prefixo',
     'pgsm_orientador', 'side', 'high' 
   );
+  add_meta_box( 
+    'orientador_username',
+    __( 'Conta do usuário', 'wordpress user account', 'pgsm-boilerplate-child' ),
+    'orientador_meta_box_username',
+    'pgsm_orientador', 'side', 'high' 
+  );
 }
 
 function orientador_meta_box_condicao( $post ) {
-  // Use nonce for verification
   wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
   $condicao = get_post_meta( $post->ID, '_condicao', TRUE);
   if (!$condicao) $condicao = 'credenciado';
@@ -101,6 +106,34 @@ function orientador_meta_box_prefixo( $post ) {
   <?php
 }
 
+function orientador_meta_box_username( $post ){
+  wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
+  $user_id = get_post_meta( $post->ID, '_user_id', TRUE);
+  if (!$user_id) $user_id = '-1'; 
+  $args = array(
+      'show_option_all'         => null, // string
+      'show_option_none'        => 'Nenhum', // string
+      'hide_if_only_one_author' => null, // string
+      'orderby'                 => 'display_name',
+      'order'                   => 'ASC',
+      'include'                 => null, // string
+      'exclude'                 => null, // string
+      'multi'                   => false,
+      'show'                    => 'display_name',
+      'echo'                    => true,
+      'selected'                => $user_id,
+      'include_selected'        => true,
+      'name'                    => '_user_id', // string
+      'id'                      => null, // integer
+      'class'                   => null, // string 
+      'blog_id'                 => $GLOBALS['blog_id'],
+      'who'                     => null // string
+  );
+  wp_dropdown_users( $args );
+  ?>
+  <p>Caso o(a) orientador(a) ainda não se encontre na lista acima, <a href="/wp-admin/user-new.php">crie um novo usuário para ele(a)</a> e depois retorne aqui.</p>
+  <?php
+}
 /* When the post is saved, saves our custom data */
 function orientador_save_postdata( $post_id ) {
   // verify if this is an auto save routine. 
@@ -129,6 +162,9 @@ function orientador_save_postdata( $post_id ) {
   }
   if ($_POST['_condicao']){
     update_post_meta($post_id, '_condicao', $_POST['_condicao']);
+  }
+  if ($_POST['_user_id']){
+    update_post_meta($post_id, '_user_id', $_POST['_user_id']);
   }
 }
 
