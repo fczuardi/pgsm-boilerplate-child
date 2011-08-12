@@ -232,7 +232,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-/*  opacity:0.5;*/
+  opacity:0.5;
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -369,6 +369,12 @@ body #content .entry-title{
   color: #87adb8;
   font-size:13px;
 }
+#searchform{
+  height:48px;
+  position:absolute;
+  right: 37px;
+  top:53px;
+}
 
 /******************************************************************
 PAGE SPECIFIC STYLES
@@ -446,12 +452,6 @@ body.slug-disciplinas .entry-title,
 body.blog .entry-title{
   float:left;
 }
-body.slug-disciplinas #searchform,
-body.blog #searchform{
-  float:right;
-  margin-top:6px;
-  height:48px;
-}
 body.blog .layer-shadow{
   margin-top:3px;
 }
@@ -469,6 +469,24 @@ body.slug-disciplinas .entry{
 }
 body.blog .navigation{
   margin-top:20px;
+}
+/* ORIENTADORES */
+body.slug-credenciados{
+  background-image: url(dev/pgsm_04A_orientadores-credenciados-awzuardi_v1.png);
+}
+body.slug-credenciados .sidebar{
+  width:213px;
+  background-color:red;
+  float:left;
+  margin-left:-3px;
+  padding-top:27px;
+}
+body.slug-credenciados #content .sidebar h2{
+  margin-top: 24px;
+}
+
+body.slug-credenciados .entry{
+  margin-top:38px;
 }
 /******************************************************************
 RIGHT SIDEBAR (HOME)

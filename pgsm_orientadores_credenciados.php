@@ -34,9 +34,19 @@ $args=array(
   $wp_query = new WP_Query($args);
   if( have_posts() ) : 
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-  	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
+  	    <div <?php post_class('collapsible') ?> id="post-<?php the_ID(); ?>">
           <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
           <div class="layer-shadow light"><hr /></div>
+          <aside class="sidebar">
+            <?php
+            $user_id = get_post_meta($post->ID, '_user_id', true);
+            $orientador = get_userdata($user_id);
+            if (userphoto_exists($orientador)){
+              userphoto($orientador);
+            }
+            ?>
+            <!-- <h2>Últimos Posts</h2> -->
+          </aside>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
           </div>
