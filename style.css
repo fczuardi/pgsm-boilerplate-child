@@ -232,7 +232,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-  opacity:0.5;
+/*  opacity:0.8;*/
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -347,12 +347,12 @@ body #content .entry-title{
     transition: height 2s ease-in-out;  
 */
 }
-.collapsible {
-/*  height:auto;*/
-}
 .collapsible.closed .entry{
   height:1px;
   margin:0;
+}
+.collapsible.closed .sidebar{
+  display:none;
 }
 
 .line-button a{
@@ -472,22 +472,61 @@ body.blog .navigation{
 }
 /* ORIENTADORES */
 body.slug-credenciados{
-  background-image: url(dev/pgsm_04A_orientadores-credenciados-awzuardi_v1.png);
+/*  background-image: url(dev/pgsm_04A_orientadores-credenciados-awzuardi_v1.png);*/
 }
 body.slug-credenciados .sidebar{
-  width:213px;
-  background-color:red;
+  width:173px;
+  padding-right:42px;
+/*  background-color:red;*/
   float:left;
   margin-left:-3px;
   padding-top:27px;
 }
+body.slug-credenciados #content .sidebar .photo{
+  margin-bottom: 24px;
+  
+}
 body.slug-credenciados #content .sidebar h2{
-  margin-top: 24px;
+  display:inline-block;
+  margin-top:0px;
+  margin-bottom:10px;
 }
 
 body.slug-credenciados .entry{
   margin-top:38px;
 }
+
+body.slug-credenciados #content .sidebar ul,
+body.slug-credenciados #content .sidebar ol{
+  list-style: none;
+  margin: 0 0 14px 0;
+  clear: both;
+}
+body.slug-credenciados #content .sidebar ol li{
+  border-bottom: 1px solid #bdd1d7;
+  padding-bottom:7px;
+}
+body.slug-credenciados #content .sidebar ol li time{
+  color: #25667a;
+}
+body.slug-credenciados #content .sidebar li a{
+  font-weight: bold;
+  letter-spacing:0.5px;
+  line-height:19px;
+}
+body.slug-credenciados #content .sidebar p a{
+  font-size:10px;
+  font-weight:normal;
+  margin-left:4px;
+}
+
+body.slug-credenciados #content .collapsible {
+  padding-bottom:44px;
+}
+body.slug-credenciados #content .collapsible.closed {
+  padding-bottom:0px;
+}
+
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
@@ -501,15 +540,18 @@ RIGHT SIDEBAR (HOME)
   display:table-cell;
   padding-top:12px;
 }
-#content ul.xoxo .feed-icon{
+#content .feed-icon{
   background-image:url(images/feed-icon.png);
   display:block;
   overflow: hidden;
-  width: 15px;
   height: 15px;
   text-indent: 15px;
   float: right;
   margin: -1px 4px 0 0;
+}
+#content .feed-icon,
+#content ul.xoxo .feed-icon{
+  width: 15px;
 }
 #content ul.xoxo h3{
   color: #92b2bc;
@@ -558,7 +600,7 @@ RIGHT SIDEBAR (HOME)
   margin-bottom:21px;
   margin-left:-7px;
 }
-#content ul.xoxo time{
+#content li time{
   text-transform: capitalize;
   display: block;
 /*  font-size: 12px;*/

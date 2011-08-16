@@ -18,7 +18,8 @@ get_header(); ?>
 </form>
 <div class="layer-shadow"><hr /></div>
 <?php
-$post_per_page = 2;
+$author_id = $_REQUEST['author'];
+$post_per_page = 10;
 $do_not_show_stickies = 1;
 $args=array(
     // 'category__in' => array($cat),
@@ -28,6 +29,9 @@ $args=array(
     'posts_per_page' => $post_per_page,
     'caller_get_posts' => $do_not_show_stickies
   );
+if ($author_id) {
+  $args['author'] = (int) $author_id;
+}
   $temp = $wp_query;  // assign orginal query to temp variable for later use   
   $wp_query = null;
   $wp_query = new WP_Query($args);
