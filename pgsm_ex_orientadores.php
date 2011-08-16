@@ -34,8 +34,81 @@ $args=array(
   if( have_posts() ) : 
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
   	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
-          <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
-          <div class="layer-shadow light"><hr /></div>
+          <h2 class="colapse-toggle"><a class="colapse-toggle" href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
+          <div class="layer-shadow light colapse-toggle"><hr /></div>
+          <aside class="sidebar">
+            <?php
+            $user_id = get_post_meta($post->ID, '_user_id', true);
+            if (($user_id) && ($user_id != -1)){
+              $orientador = get_userdata($user_id);
+              // Foto do orientador
+              if (userphoto_exists($orientador)){
+                userphoto($orientador);
+              }
+              // Posts do orientador
+              $professor_args=array(
+                  // 'post_type' => 'pgsm_orientador',
+                  'orderby' => 'date',
+                  'order' => 'DESC',
+                  'author' => $user_id,
+                  'posts_per_page' => $post_per_page,
+                  'caller_get_posts' => $do_not_show_stickies
+                );
+              var_dump($user_id);
+              $posts_by_author_query = new WP_Query($professor_args);
+              if ( $posts_by_author_query->have_posts() ) { ?>
+                <h2><?php _e('Últimos Posts', 'pgsm-boilerplate-child');?></h2>
+                <a href="<?php echo bloginfo( 'url' ) . '/author/' . $orientador->user_login . '/feed/' ?>" class="feed-icon">RSS</a>
+                <ol>
+                <?php
+                while ( $posts_by_author_query->have_posts() ) : $posts_by_author_query->the_post(); ?>
+                  <li>
+                    <time pubdate datetime="<?php the_date('c');?>"><?php the_time('D j M Y : h\hi'); ?></time>
+                    <a href="<?php the_permalink() ?>" title="<?php 
+                    echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); 
+                    ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a>
+                  </li>
+                <?php 
+                endwhile; ?>
+                </ol>
+                <p>
+                  <a href="<?php echo get_permalink(get_option('page_for_posts')) . '?author=' . $user_id;?>"><?php _e('Ler todos os posts', 'pgsm-boilerplate-child');?></a>
+                </p>
+                <?php
+              }
+              wp_reset_postdata();
+              
+              // Links relacionados do orientador
+              $links_relacionados = array();
+              if ($orientador->url_lattes) { 
+                $links_relacionados[] = array(__('Currículo Lattes', 'pgsm-boilerplate-child'), $orientador->url_lattes);
+              }
+              if ($orientador->url_pubmed) { 
+                $links_relacionados[] = array(__('Pubmed', 'pgsm-boilerplate-child'), $orientador->url_pubmed);
+              }
+              if ($orientador->url_twitter) { 
+                $links_relacionados[] = array(__('Twitter', 'pgsm-boilerplate-child'), $orientador->url_twitter);
+              }
+              if ($orientador->other_links) { 
+                $links_relacionados = array_merge($links_relacionados, json_decode($orientador->other_links, true));
+              }
+              if (count($links_relacionados) > 0){?>
+                <h2><?php _e('Links Relacionados', 'pgsm-boilerplate-child');?></h2>
+                <ul>
+                <?php
+                for ($i=0; $i < count($links_relacionados); $i++){
+                  $link_name = $links_relacionados[$i][0];
+                  $link_url = $links_relacionados[$i][1]; ?>
+                  <li>
+                    <a href="<?php echo $link_url; ?>"><?php echo $link_name; ?></a>
+                  </li>
+                  <?php
+                } ?>
+                </ul>
+                <?php
+              }
+            } ?>
+          </aside>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
           </div>

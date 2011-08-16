@@ -471,9 +471,11 @@ body.blog .navigation{
   margin-top:20px;
 }
 /* ORIENTADORES */
+body.slug-ex_orientadores,
 body.slug-credenciados{
 /*  background-image: url(dev/pgsm_04A_orientadores-credenciados-awzuardi_v1.png);*/
 }
+body.slug-ex_orientadores .sidebar,
 body.slug-credenciados .sidebar{
   width:173px;
   padding-right:42px;
@@ -482,48 +484,58 @@ body.slug-credenciados .sidebar{
   margin-left:-3px;
   padding-top:27px;
 }
+body.slug-ex_orientadores #content .sidebar .photo,
 body.slug-credenciados #content .sidebar .photo{
   margin-bottom: 24px;
   
 }
+body.slug-ex_orientadores #content .sidebar h2,
 body.slug-credenciados #content .sidebar h2{
   display:inline-block;
   margin-top:0px;
   margin-bottom:10px;
 }
-
+body.slug-ex_orientadores .entry,
 body.slug-credenciados .entry{
   margin-top:38px;
 }
 
+body.slug-ex_orientadores #content .sidebar ul,
+body.slug-ex_orientadores #content .sidebar ol,
 body.slug-credenciados #content .sidebar ul,
 body.slug-credenciados #content .sidebar ol{
   list-style: none;
   margin: 0 0 14px 0;
   clear: both;
 }
+body.slug-ex_orientadores #content .sidebar ol li,
 body.slug-credenciados #content .sidebar ol li{
   border-bottom: 1px solid #bdd1d7;
   padding-bottom:7px;
 }
+body.slug-ex_orientadores #content .sidebar ol li time,
 body.slug-credenciados #content .sidebar ol li time{
   color: #25667a;
 }
+body.slug-ex_orientadores #content .sidebar li a,
 body.slug-credenciados #content .sidebar li a{
   font-weight: bold;
   letter-spacing:0.5px;
   line-height:19px;
 }
+body.slug-ex_orientadores #content .sidebar p a,
 body.slug-credenciados #content .sidebar p a{
   font-size:10px;
   font-weight:normal;
   margin-left:4px;
 }
 
-body.slug-credenciados #content .collapsible {
+body.slug-ex_orientadores #content .collapsible,
+body.slug-credenciados #content .collapsible{
   padding-bottom:44px;
 }
-body.slug-credenciados #content .collapsible.closed {
+body.slug-ex_orientadores #content .collapsible.closed,
+body.slug-credenciados #content .collapsible.closed{
   padding-bottom:0px;
 }
 

@@ -40,7 +40,7 @@ $args=array(
           <aside class="sidebar">
             <?php
             $user_id = get_post_meta($post->ID, '_user_id', true);
-            if ($user_id) {
+            if (($user_id) && ($user_id != -1)){
               $orientador = get_userdata($user_id);
               // Foto do orientador
               if (userphoto_exists($orientador)){
