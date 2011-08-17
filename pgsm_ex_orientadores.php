@@ -33,7 +33,7 @@ $args=array(
   $wp_query = new WP_Query($args);
   if( have_posts() ) : 
   		while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-  	    <div <?php post_class('collapsible closed') ?> id="post-<?php the_ID(); ?>">
+  	    <div <?php post_class('collapsible closed people') ?> id="post-<?php the_ID(); ?>">
           <h2 class="colapse-toggle"><a class="colapse-toggle" href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
           <div class="layer-shadow light colapse-toggle"><hr /></div>
           <aside class="sidebar">
@@ -54,7 +54,6 @@ $args=array(
                   'posts_per_page' => $post_per_page,
                   'caller_get_posts' => $do_not_show_stickies
                 );
-              var_dump($user_id);
               $posts_by_author_query = new WP_Query($professor_args);
               if ( $posts_by_author_query->have_posts() ) { ?>
                 <h2><?php _e('Últimos Posts', 'pgsm-boilerplate-child');?></h2>
