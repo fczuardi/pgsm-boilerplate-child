@@ -1,5 +1,6 @@
 <?php
 global $page_title, $page_subtitle, $next_page_label, $list_item_type, $post_subtype, $post_per_page;
+get_header(); 
 ?>
 <h1 class="entry-title"><?php echo $page_title; ?></h1>
 <h2><?php echo $page_subtitle; ?></h2>
@@ -123,4 +124,5 @@ $args=array(
   		<?php get_search_form(); ?>
   	<?php endif; 
     $wp_query = $temp;  //reset back to original query
+    get_footer(); 
 ?>

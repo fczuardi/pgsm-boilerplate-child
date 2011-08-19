@@ -8,7 +8,5 @@ $next_page_label = __('Mais Alunos');
 $list_item_type = 'pgsm_aluno';
 $post_subtype = 'doutorando';
 $post_per_page = 3;
-get_header(); 
 get_template_part( 'pgsm_people_list' ); 
-get_footer(); 
 ?>
