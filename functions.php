@@ -20,14 +20,15 @@ function my_child_theme_setup() {
   //custom types
   add_action('init', 'create_type_disciplina');
   add_action('init', 'create_type_orientador');
+  add_action('init', 'create_type_aluno');
   //customizacoes para os custom types
   add_filter('request', 'filter_request_for_custom_types');
   add_filter('request', 'filter_pagination_for_custom_types');
   add_filter('the_editor_content', 'my_preset_content');
   add_filter('default_title', 'my_preset_title');
   //custom meta boxes for custom post types
-  add_action( 'add_meta_boxes', 'add_orientador_custom_boxes' );
-  add_action( 'save_post', 'orientador_save_postdata' );
+  add_action( 'add_meta_boxes', 'add_people_custom_boxes' );
+  add_action( 'save_post', 'people_save_postdata' );
   //custom user fields
   add_action( 'show_user_profile', 'extra_profile_fields' );
   add_action( 'edit_user_profile', 'extra_profile_fields' );
@@ -118,7 +119,7 @@ function save_extra_profile_fields( $user_id ) {
   }
 }
 
-function add_orientador_custom_boxes() {
+function add_people_custom_boxes() {
   add_meta_box( 
     'orientador_condicao',
     __( 'Condição', 'tipo de orientador', 'pgsm-boilerplate-child' ),
@@ -134,9 +135,44 @@ function add_orientador_custom_boxes() {
   add_meta_box( 
     'orientador_username',
     __( 'Conta do usuário', 'wordpress user account', 'pgsm-boilerplate-child' ),
-    'orientador_meta_box_username',
+    'people_meta_box_username',
     'pgsm_orientador', 'side', 'high' 
   );
+  add_meta_box( 
+    'aluno_condicao',
+    __( 'Condição', 'tipo de orientador', 'pgsm-boilerplate-child' ),
+    'aluno_meta_box_condicao',
+    'pgsm_aluno', 'side', 'high' 
+  );
+  add_meta_box( 
+    'aluno_username',
+    __( 'Conta do usuário', 'wordpress user account', 'pgsm-boilerplate-child' ),
+    'people_meta_box_username',
+    'pgsm_aluno', 'side', 'high' 
+  );
+}
+function aluno_meta_box_condicao( $post ) {
+  wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
+  $condicao = get_post_meta( $post->ID, '_condicao', TRUE);
+  if (!$condicao) $condicao = 'mestrando';
+  ?>
+  
+  <label class="radio-label" for="condicao_mestrando">
+  <input type="radio" id="condicao_mestrando" name="_condicao" value="mestrando" <?php if ($condicao == 'mestrando') echo "checked=1";?> />
+  <?php _e("Mestrando", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="condicao_doutorando">
+  <input type="radio" id="condicao_doutorando" name="_condicao" value="doutorando" <?php if ($condicao == 'doutorando') echo "checked=1";?> />
+  <?php _e("Douutorando", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <label class="radio-label" for="condicao_egresso">
+  <input type="radio" id="condicao_egresso" name="_condicao" value="egresso" <?php if ($condicao == 'egresso') echo "checked=1";?> />
+  <?php _e("Egresso", 'pgsm-boilerplate-child' ); ?>
+  </label>
+
+  <?php
 }
 
 function orientador_meta_box_condicao( $post ) {
@@ -187,7 +223,7 @@ function orientador_meta_box_prefixo( $post ) {
   <?php
 }
 
-function orientador_meta_box_username( $post ){
+function people_meta_box_username( $post ){
   wp_nonce_field( plugin_basename( __FILE__ ), 'pgsm-boilerplate-child-nonce' );
   $user_id = get_post_meta( $post->ID, '_user_id', TRUE);
   if (!$user_id) $user_id = '-1'; 
@@ -218,7 +254,7 @@ function orientador_meta_box_username( $post ){
 
 
 /* When the post is saved, saves our custom data */
-function orientador_save_postdata( $post_id ) {
+function people_save_postdata( $post_id ) {
   // verify if this is an auto save routine. 
   // If it is our form has not been submitted, so we dont want to do anything
   if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
@@ -232,7 +268,7 @@ function orientador_save_postdata( $post_id ) {
 
   
   // Check permissions
-  if ( 'pgsm_orientador' == $_POST['post_type'] ) 
+  if (( 'pgsm_orientador' == $_POST['post_type'] ) || ( 'pgsm_aluno' == $_POST['post_type'] ) )
   {
     if ( !current_user_can( 'edit_orientador', $post_id ) )
         return;
@@ -286,6 +322,49 @@ function create_type_orientador() {
       // 'supports' => array('title','editor','author','thumbnail','excerpt','comments')
     );
   register_post_type( 'pgsm_orientador', $args);
+  flush_rewrite_rules();
+  //add all capabilities to the admin role
+  $role = get_role( 'administrator' );
+  $role->add_cap( 'edit_' . $capability_type_names[0] );
+  $role->add_cap( 'edit_' . $capability_type_names[1] );
+  $role->add_cap( 'edit_other_' . $capability_type_names[1] );
+  $role->add_cap( 'publish_' . $capability_type_names[1] );
+  $role->add_cap( 'read_' . $capability_type_names[0] );
+  $role->add_cap( 'read_' . $capability_type_names[1] );
+  $role->add_cap( 'read_private_' . $capability_type_names[1] );
+  $role->add_cap( 'delete_' . $capability_type_names[0] );
+}
+function create_type_aluno() {
+  $capability_type_names = array('aluno', 'alunos');
+  $labels = array(
+      'name' => _x('Alunos', 'post type general name', 'pgsm-boilerplate-child'),
+      'singular_name' => _x('Aluno', 'post type singular name', 'pgsm-boilerplate-child'),
+      'add_new' => _x('Adicionar Novo', 'orientador', 'pgsm-boilerplate-child'),
+      'add_new_item' => __('Adicionar Novo Aluno', 'pgsm-boilerplate-child'),
+      'edit_item' => __('Editar Aluno', 'pgsm-boilerplate-child'),
+      'new_item' => __('Novo Aluno', 'pgsm-boilerplate-child'),
+      'view_item' => __('Visualizar Aluno', 'pgsm-boilerplate-child'),
+      'search_items' => __('Pesquisar Alunos', 'pgsm-boilerplate-child'),
+      'not_found' =>  __('Nenhum aluno encontrado', 'pgsm-boilerplate-child'),
+      'not_found_in_trash' => __('Não há alunos na lixeira', 'pgsm-boilerplate-child'), 
+      'parent_item_colon' => '',
+      'menu_name' => 'Alunos'
+    );  
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'publicly_queryable' => true,
+      'show_ui' => true, 
+      'show_in_menu' => true, 
+      'query_var' => true,
+      'rewrite' => array('slug' => 'alunos'),
+      'capability_type' => $capability_type_names,
+      'has_archive' => false, //é false mesmo, nao questione.
+      'hierarchical' => false,
+      'menu_position' => null,
+      'supports' => array('title','editor','author', 'custom-fields')
+    );
+  register_post_type( 'pgsm_aluno', $args);
   flush_rewrite_rules();
   //add all capabilities to the admin role
   $role = get_role( 'administrator' );
@@ -364,8 +443,15 @@ function my_preset_content() {
     // return $post->post_type;
 }
 function filter_request_for_custom_types($query_string){
+  //orientadores
   if (($query_string['pgsm_orientador'] == 'credenciados') || ($query_string['pgsm_orientador'] == 'ex_orientadores')) {
     $query_string['pagename'] = 'orientadores/' . $query_string['pgsm_orientador'];
+    unset($query_string['post_type']);
+    unset($query_string['name']);
+  }
+  //alunos
+  if (($query_string['pgsm_aluno'] == 'mestrado') || ($query_string['pgsm_aluno'] == 'doutorado') || ($query_string['pgsm_aluno'] == 'egressos')) {
+    $query_string['pagename'] = 'alunos/' . $query_string['pgsm_aluno'];
     unset($query_string['post_type']);
     unset($query_string['name']);
   }
