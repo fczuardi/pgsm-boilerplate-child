@@ -529,6 +529,13 @@ body.slug-credenciados{
   margin-left:4px;
 }
 
+/*DOCUMENTOS*/
+body.slug-documentos{
+/*  background-image: url(dev/pgsm_09_documentos_v1.png);*/
+}
+body.slug-documentos .layer-shadow{
+  margin-bottom:26px;
+}
 /******************************************************************
 RIGHT SIDEBAR (HOME)
 ******************************************************************/
