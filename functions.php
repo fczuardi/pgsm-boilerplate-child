@@ -36,8 +36,76 @@ function my_child_theme_setup() {
   add_action( 'edit_user_profile_update', 'save_extra_profile_fields' );
   //custom style sheet for admin pages
   add_action('admin_head', 'my_admin_head');
+  //custom fields for upload attachment form
+  add_filter("attachment_fields_to_edit", "extra_attachment_fields_to_edit", null, 2);
+  add_filter("attachment_fields_to_save", "extra_attachment_fields_to_save", null , 2);
 }
 add_action( 'after_setup_theme', 'my_child_theme_setup' );
+
+
+/* For adding custom field to gallery popup */
+// borrowed from http://net.tutsplus.com/tutorials/wordpress/creating-custom-fields-for-attachments-in-wordpress/
+function extra_attachment_fields_to_edit($form_fields, $post) {
+  $tipos = array('tese', 'dissertação');
+  $cursos = array('mestrado', 'doutorado');
+  $current_year = date('Y');
+  $oldest_year = 1990;
+  $selected_year = get_post_meta($post->ID, "_ano_de_publicacao", true);
+  $selected_tipo = get_post_meta($post->ID, "_tipo_publicacao", true);
+  $selected_curso = get_post_meta($post->ID, "_curso", true);
+
+  $form_fields["tipo_publicacao"]["label"] = __("Tipo de publicação");
+  $form_fields["tipo_publicacao"]["input"] = "html";
+  $form_fields["tipo_publicacao"]["html"] = "<select name='attachments[{$post->ID}][tipo_publicacao]' id='attachments[{$post->ID}][tipo_publicacao]'> ";
+  foreach ($tipos as $tipo){
+    $form_fields["tipo_publicacao"]["html"] .= "<option value=\"$tipo\"". (($tipo == $selected_tipo) ? " selected=\"selected\"" : '') . ">$tipo</option>";
+  }
+  $form_fields["tipo_publicacao"]["html"] .= '<option value=""' . ($selected_tipo ? '' : ' selected="selected"') . '>Escolha um</option></select>';
+  
+  $form_fields["curso"]["input"] = "html";
+  $form_fields["curso"]["html"] = "<select name='attachments[{$post->ID}][curso]' id='attachments[{$post->ID}][curso]'> ";
+  foreach ($cursos as $curso){
+    $form_fields["curso"]["html"] .= "<option value=\"$curso\"". (($curso == $selected_curso) ? " selected=\"selected\"" : '') . ">$curso</option>";
+  }
+  $form_fields["curso"]["html"] .= '<option value=""' . ($selected_curso ? '' : ' selected="selected"') . '>Escolha um</option></select>';
+
+  $form_fields["ano_de_publicacao"]["label"] = __("Ano de publicação");  
+  $form_fields["ano_de_publicacao"]["input"] = "html";
+  $form_fields["ano_de_publicacao"]["html"] = "<select name='attachments[{$post->ID}][ano_de_publicacao]' id='attachments[{$post->ID}][ano_de_publicacao]'> ";
+  for ($ano = $oldest_year; $ano <= $current_year; $ano++){
+    $form_fields["ano_de_publicacao"]["html"] .= "<option value=\"$ano\"";
+    if ($ano == $selected_year){
+      $form_fields["ano_de_publicacao"]["html"] .= ' selected=\"selected\"';
+    }
+    $form_fields["ano_de_publicacao"]["html"] .= ">$ano</option>\n";
+  }
+  $form_fields["ano_de_publicacao"]["html"] .= '<option value=""' . ($selected_year ? '' : ' selected="selected"') . '>Escolha um</option></select>';
+  
+  $form_fields["autor"]["label"] = __("Autor");  
+  $form_fields["autor"]["input"] = "text";
+  $form_fields["autor"]["value"] = get_post_meta($post->ID, "_autor", true);
+  
+  $form_fields["orientadores"]["label"] = __("Orientadores");  
+  $form_fields["orientadores"]["input"] = "text";
+  $form_fields["orientadores"]["value"] = get_post_meta($post->ID, "_orientadores", true);
+  
+  $form_fields["coorientadores"]["label"] = __("Coorientadores");  
+  $form_fields["coorientadores"]["input"] = "text";
+  $form_fields["coorientadores"]["value"] = get_post_meta($post->ID, "_coorientadores", true);
+  
+  return $form_fields;
+}
+function extra_attachment_fields_to_save($post, $attachment) {
+  $custom_fields = array('tipo_publicacao', 'curso', 'ano_de_publicacao', 'autor', 'orientadores', 'coorientadores');
+  foreach($custom_fields as $field){
+    if( isset($attachment[$field]) ){
+      update_post_meta($post['ID'], '_'.$field, $attachment[$field]);
+    }
+  }
+  return $post;
+}
+
+
 
 function my_admin_head() {
   echo '<link rel="stylesheet" type="text/css" href="' . trailingslashit( get_stylesheet_directory_uri() ).'/wp-admin.css' . '">';
@@ -639,7 +707,7 @@ class Recent_Posts_With_Time extends WP_Widget_Recent_Posts {
 
     $title = apply_filters('widget_title', empty($instance['title']) ? __('Últimas Notícias') : $instance['title'], $instance, $this->id_base);
     if ( ! $number = absint( $instance['number'] ) )
-      $number = 10;
+      $number = 4;
 
     $r = new WP_Query(array('posts_per_page' => $number, 'nopaging' => 0, 'post_status' => 'publish', 'ignore_sticky_posts' => true));
     if ($r->have_posts()) :

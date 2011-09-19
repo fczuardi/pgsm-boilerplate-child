@@ -17,6 +17,9 @@ DOCUMENT GALLERY
   padding-top:12px;
   font-weight:bold;
 }
+.publicacao-meta{
+  display:block;
+}
 .gallery-caption{
   margin-left:90px;
 }

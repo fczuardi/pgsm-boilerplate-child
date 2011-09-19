@@ -1,3 +1,36 @@
 <!-- 
 Title:  Dissertações e Teses
 -->
+<form>
+  <h2>Busca</h2>
+  <input type="text" />
+  <input type="submit" value="Buscar" />
+  <h2>Procurar em</h2>
+  <div id="filtros-busca">
+    <div class="col1">
+      <label><input type="checkbox" /> dissertações</label>
+      <label><input type="checkbox" /> teses</label>
+    </div>
+    <div class="col2">
+      <label><input type="checkbox" /> autor</label>
+      <label><input type="checkbox" /> título</label>
+      <label><input type="checkbox" /> orientador</label>
+    </div>
+    <div class="col3">
+      <h2><label>Entre os Anos de</label></h2>
+      <p>
+        <select>
+          <option selected="selected">Escolha um</option>
+          [year_option_list]
+        </select>
+        e
+        <select>
+          [year_option_list]
+          <option selected="selected">Escolha um</option>
+        </select>
+      </p>
+    </div>
+  </div>
+</form>
+<h2>Últimas Publicações</h2>
+[gallery link="file" limit="10" paginate="true" template="pgsm-doc-gallery" columns="0"]

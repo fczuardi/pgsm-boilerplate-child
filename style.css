@@ -232,7 +232,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-/*  opacity:0.8;*/
+  opacity:0.8;
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -535,6 +535,52 @@ body.slug-documentos{
 }
 body.slug-documentos .layer-shadow{
   margin-bottom:26px;
+}
+
+/*DISSERTACOES E TESES*/
+body.slug-dissertacoes_e_teses{
+  background-image: url(dev/pgsm_12_worst_case_v1.png);
+}
+body.slug-dissertacoes_e_teses #content form h2{
+  margin-bottom:12px;
+  margin-top:0px;
+}
+body.slug-dissertacoes_e_teses #filtros-busca {
+  clear:both;
+  margin-top:-2px;
+}
+body.slug-dissertacoes_e_teses #filtros-busca div{
+  float:left;
+}
+body.slug-dissertacoes_e_teses #filtros-busca .col1{
+  width:119px;
+}
+body.slug-dissertacoes_e_teses #filtros-busca .col2{
+  width:114px;
+}
+body.slug-dissertacoes_e_teses #filtros-busca .col3{
+  float:none;
+  padding-top:20px;
+}
+body.slug-dissertacoes_e_teses #filtros-busca .col3 p{
+  margin-top:-6px;
+}
+body.slug-dissertacoes_e_teses input[type="text"]{
+  width:230px;
+  margin-right:8px;
+  margin-bottom:18px;
+}
+body.slug-dissertacoes_e_teses input[type="checkbox"]{
+  display:block;
+  float:left;
+  margin-right:8px;
+}
+body.slug-dissertacoes_e_teses label{
+  display:block;
+  margin-bottom:7px;
+}
+body.slug-dissertacoes_e_teses .doc-name{
+  padding-top:0px;
 }
 /******************************************************************
 RIGHT SIDEBAR (HOME)

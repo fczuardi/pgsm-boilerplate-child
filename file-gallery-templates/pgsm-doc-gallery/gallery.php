@@ -40,6 +40,22 @@
 	<?php endif; ?>
 	</dt>
 	<dd class="gallery-caption">
+	  <?php
+  // $custom_fields = array('tipo_publicacao', 'curso', 'ano_de_publicacao', 'autor', 'orientadores', 'coorientadores');
+    $tipo_publicacao = get_post_meta($attachment->ID, "_tipo_publicacao", true);
+    $curso_publicacao = get_post_meta($attachment->ID, "_curso", true);
+    $ano_publicacao = get_post_meta($attachment->ID, "_ano_de_publicacao", true);
+    $autor_publicacao = get_post_meta($attachment->ID, "_autor", true);
+    $orientadores_publicacao = get_post_meta($attachment->ID, "_orientadores", true);
+    $coorientadores_publicacao = get_post_meta($attachment->ID, "_coorientadores", true);
+    echo  '<span class="publicacao-meta">' .
+          ($tipo_publicacao ? ucfirst($tipo_publicacao) : '') . 
+          ($curso_publicacao ? ' de ' . ucfirst($curso_publicacao) : '') .
+          ($autor_publicacao ? ' por ' . $autor_publicacao : '') .
+          ($orientadores_publicacao ? ' orientada por ' . $orientadores_publicacao : '') .
+          ($coorientadores_publicacao ? ' e coorientada por ' . $coorientadores_publicacao : '') .
+          '</span>';
+    ?>
 		<?php echo '<span class="doc-size">' . round($size, 0).$units[$i] . '</span>'; ?>
 	</dd>
 </dl>
