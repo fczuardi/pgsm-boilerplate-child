@@ -9,3 +9,19 @@ IMAGE GALLERY
 #cboxOverlay{
   background-color:#05212a;
 }
+#cboxContent{
+  margin-top:40px;
+}
+#cboxTitle,#cboxCurrent{
+  font-family: "Myriad Pro","FrancophilSans",Arial,"Helvetica Neue",Helvetica,sans-serif;
+}
+#cboxTitle{
+  font-size: 16px;
+  letter-spacing: 5px;
+  line-height: 40px;
+  text-transform: uppercase;
+  top:-40px;
+}
+#cboxCurrent{
+  margin-top: -6px;
+}
