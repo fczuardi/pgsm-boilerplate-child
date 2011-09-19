@@ -232,7 +232,7 @@ CONTENT
   margin-top:-20px;
   padding: 47px 37px 19px 42px;
   background-color:#fff;
-  opacity:0.8;
+/*  opacity:0.8;*/
   min-height: 600px;
   -moz-border-radius: 0 0 6px 6px;
   -moz-box-shadow: 0 5px 20px 0px rgba(35,97,116,0.24);
@@ -539,7 +539,7 @@ body.slug-documentos .layer-shadow{
 
 /*DISSERTACOES E TESES*/
 body.slug-dissertacoes_e_teses{
-  background-image: url(dev/pgsm_12_worst_case_v1.png);
+/*  background-image: url(dev/pgsm_12_worst_case_v1.png);*/
 }
 body.slug-dissertacoes_e_teses #content form h2{
   margin-bottom:12px;

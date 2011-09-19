@@ -1,0 +1,1 @@
+Numa nova instalação é necessário ativar o plugin shortcode-exec-php e adicionar os snippets deste diretorio na tela de admin.
