@@ -5,3 +5,7 @@ IMAGE GALLERY
   float:left;
   padding-right: 5px;
 }
+
+#cboxOverlay{
+  background-color:#05212a;
+}
