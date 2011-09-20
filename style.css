@@ -721,8 +721,8 @@ html.lte9 footer[role=contentinfo] {
   padding-top:30px;
   margin-left:-255px;
 }
-html.ie7 footer[role=contentinfo]{
-  position:inherit !important;
+html.lte9.ie7 footer[role=contentinfo]{
+  position:static;
   margin-left:290px;
 }
 
