@@ -9,7 +9,7 @@
 		      <p>Firefox</p>
 		    </li>
 		    <li>
-		      <a href="http://www.google.com/chrome"><img src="<?php bloginfo('stylesheet_directory');?>/ie6/browser_chrome.gif" /></a>
+		      <a href="http://www.google.com/chrome"><img src="<?php bloginfo('stylesheet_directory');?>/ie6/browser_chrome.png" /></a>
 		      <p>Chrome</p>
 		    </li>
 		    <li style="margin-right:0px">
