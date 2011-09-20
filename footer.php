@@ -35,7 +35,7 @@
         Fax: <a class="tel" href="tel:+55-16-36024605">+55 (16) 3602.4605</a> &nbsp;:&nbsp;
         <a class="email" href="mailto:pg_saudemental@rnp.fmrp.usp.br">pg_saudemental@rnp.fmrp.usp.br</a>
       </p>
-		</footer><!-- footer -->
+		</footer>
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory');?>/js/main.js"></script>
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

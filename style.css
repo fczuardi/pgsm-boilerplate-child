@@ -674,7 +674,6 @@ FOOTER
 footer[role=contentinfo]{
   position: relative;
   float:left;
-  left:50%;
   padding: 45px 62px 0 45px;
   width: 667px;
   height:105px;
@@ -682,7 +681,8 @@ footer[role=contentinfo]{
   margin-left:-282px;
   clear:both;
   background-color: none;
-  color: #25667a;
+  color: #25667a; 
+  left:50%;
 }
 footer[role=contentinfo] h2{
   margin-bottom: 4px;
@@ -711,9 +711,21 @@ html.lte9 nav{
 html.lte9 #content{
   display:none; 
 }
-html.lte9 footer[role="contentinfo"] {
-  margin-left:-369px;
+html.lte9 footer{
+  width:425px;
+  padding-top:30px;
+  margin:auto;
 }
+html.lte9 footer[role=contentinfo] {
+  width:425px;
+  padding-top:30px;
+  margin-left:-255px;
+}
+html.ie7 footer[role=contentinfo]{
+  position:inherit !important;
+  margin-left:290px;
+}
+
 html.lte9 #logo-footer{
   display:none;
 }
@@ -722,9 +734,10 @@ html.lte9 li{
 }
 html.lte9 #ie6-message{
   width:425px;
-  height:230px;
+  height:260px;
   padding:40px;
   padding-top:30px;
+  padding-bottom:20px;
   background-color:#fff;
   border:1px solid #ccc;
   color:#4f4f4f;
@@ -733,6 +746,9 @@ html.lte9 #ie6-message{
   margin:auto;
   margin-top:100px;
   display:block;
+}
+html.lte9.ie7 #ie6-message{
+  height:290px;
 }
 html.lte9 #ie6-message h1{
   color: #333333;
@@ -770,4 +786,5 @@ html.lte9 #ie6-message li p{
   margin: 1px auto;
   text-align: center;
   width: 118px;
+  margin-top:-2px;
 }
