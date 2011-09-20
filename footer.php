@@ -17,7 +17,7 @@
 		      <p>Safari</p>
 		    </li>
 		  </ul>
-		  <p style="clear:left">Ou até mesmo a última versão do <a href="http://www.microsoft.com/windows/Internet-explorer">Internet Explorer</a>.</p>
+		  <p style="clear:left">Ou até mesmo a versão mais atualizada do <a href="http://www.microsoft.com/windows/Internet-explorer">Internet Explorer</a>.</p>
 		</div>
     <![endif]-->
 		<footer role="contentinfo" class="vcard">

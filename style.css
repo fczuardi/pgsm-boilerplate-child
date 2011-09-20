@@ -711,6 +711,9 @@ html.lte9 nav{
 html.lte9 #content{
   display:none; 
 }
+html.ltie9 #logo-footer{
+  display:none;
+}
 html.lte9 li{
   float:left;
 }
