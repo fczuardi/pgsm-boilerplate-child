@@ -696,9 +696,72 @@ font-size: 14px;
   margin-right: 26px;
 }
 
-
-
-
-
-
-
+/******************************************************************
+IE 6 version
+******************************************************************/
+#ie6-message{
+ display:none;
+}
+html.lte9 header{
+  display:none;
+}
+html.lte9 nav{
+  display:none;
+}
+html.lte9 #content{
+  display:none; 
+}
+html.lte9 li{
+  float:left;
+}
+html.lte9 #ie6-message{
+  width:425px;
+  height:230px;
+  padding:40px;
+  padding-top:30px;
+  background-color:#fff;
+  border:1px solid #ccc;
+  color:#4f4f4f;
+  font-family: 'Lucida Grande','Lucida Sans Unicode',Arial,Verdana,sans-serif;
+  font-size: 12px;
+  margin:auto;
+  margin-top:100px;
+  display:block;
+}
+html.lte9 #ie6-message h1{
+  color: #333333;
+  display: block;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+html.lte9 #ie6-message p{
+  margin-bottom:2em;
+}
+html.lte9 #ie6-message ul{
+  list-style:none;
+  margin:0px;
+}
+html.lte9 #ie6-message li{
+  height: 122px;
+  width: 120px;
+  background: url("./ie6/background_browser.gif") no-repeat scroll left top transparent;
+  cursor: pointer;
+  margin: 0 30px 20px 0;
+  text-align:center;
+}
+html.lte9 #ie6-message li img{
+  height:100px;
+  width:100px;
+  border:0px;
+}
+html.lte9 #ie6-message li p{
+  color: #808080;
+  font-size: 0.8em;
+  height: 18px;
+  line-height: 17px;
+  margin: 1px auto;
+  text-align: center;
+  width: 118px;
+}

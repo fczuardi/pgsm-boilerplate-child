@@ -1,4 +1,25 @@
 		</section><!-- #main -->
+    <!--[if lt IE 9 ]>
+		<div id="ie6-message">
+		  <h1>Você sabia que seu Internet Explorer está desatualizado?</h1>
+		  <p>Este site não é compatível com o seu navegador, atualize-o <a href="http://www.google.com/chromeframe">instalando o plugin Chrome Frame</a> ou um dos navegadores modernos abaixo.</p>
+		  <ul>
+		    <li>
+		      <a href="http://www.mozilla.com/firefox/"><img src="<?php bloginfo('stylesheet_directory');?>/ie6/browser_firefox.gif" /></a>
+		      <p>Firefox</p>
+		    </li>
+		    <li>
+		      <a href="http://www.google.com/chrome"><img src="<?php bloginfo('stylesheet_directory');?>/ie6/browser_chrome.gif" /></a>
+		      <p>Chrome</p>
+		    </li>
+		    <li style="margin-right:0px">
+		      <a href="http://www.apple.com/safari/download/"><img src="<?php bloginfo('stylesheet_directory');?>/ie6/browser_safari.gif" /></a>
+		      <p>Safari</p>
+		    </li>
+		  </ul>
+		  <p style="clear:left">Ou até mesmo a última versão do <a href="http://www.microsoft.com/windows/Internet-explorer">Internet Explorer</a>.</p>
+		</div>
+    <![endif]-->
 		<footer role="contentinfo" class="vcard">
 			<a href="<?php echo home_url( '/' ) ?>" 
 			  title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
@@ -16,6 +37,10 @@
       </p>
 		</footer><!-- footer -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory');?>/js/main.js"></script>
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
 <?php
 	/* Always have wp_footer() just before the closing </body>
 	 * tag of your theme, or you will break many plugins, which
