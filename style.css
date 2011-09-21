@@ -293,8 +293,13 @@ body #content .entry-title{
 #content ul{
   margin-bottom:21px;
 }
+#content ul.romano,
 #content ol.romano{
-  list-style-type:upper-roman
+  list-style:upper-roman
+}
+#content ol.alfabetico,
+#content ul.alfabetico{
+  list-style:lower-alpha;
 }
 .entry{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;

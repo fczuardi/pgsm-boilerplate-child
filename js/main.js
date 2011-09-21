@@ -7,7 +7,6 @@ jQuery(document).ready(function($) {
   
   //apply collapsible behavior for colapsible post list elements
   $('.collapsible').bind('click', function(event){
-    console.log(this);
     if (! $(event.target).hasClass('colapse-toggle')){ return; }
     event.preventDefault();
     if ($(event.currentTarget).hasClass('closed')){
