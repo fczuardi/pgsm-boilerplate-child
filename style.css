@@ -264,6 +264,7 @@ body #content .entry-title{
 }
 #content .collapsible h2 {
   margin-bottom:0px;
+  cursor:pointer;
 }
 #content time{
   font-size:12px;
@@ -291,6 +292,9 @@ body #content .entry-title{
 }
 #content ul{
   margin-bottom:21px;
+}
+#content ol.romano{
+  list-style-type:upper-roman
 }
 .entry{
   font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
