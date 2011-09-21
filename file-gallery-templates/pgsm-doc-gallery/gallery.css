@@ -2,11 +2,17 @@
 DOCUMENT GALLERY
 ******************************************************************/
 .gallery{
-  margin-top:-4px;
+  margin-top:-14px;
+  margin-left:-10px;
 }
 .gallery-item{
-  padding-right: 5px;
-  height:74px;
+  padding: 10px;
+  min-height:52px;
+  font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;
+  font-size:14px;
+}
+.gallery-item:hover{
+  background-color:#eaf4f7;
 }
 .gallery-icon img{
   float:left;
@@ -16,6 +22,9 @@ DOCUMENT GALLERY
   padding-left:90px;
   padding-top:12px;
   font-weight:bold;
+}
+.gallery-caption{
+  
 }
 .publicacao-meta{
   display:block;

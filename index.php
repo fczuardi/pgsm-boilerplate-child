@@ -9,6 +9,7 @@ Baseado no exemplo: http://codex.wordpress.org/Pages#A_Page_of_Posts
 */
 get_header(); ?>
 <h1 class="entry-title">Notícias</h1>
+<h2>Mais Recentes</h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>
 		<input type="search" id="s" name="s" value="" placeholder="Pesquisar por...">

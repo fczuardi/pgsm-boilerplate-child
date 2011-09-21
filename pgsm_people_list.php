@@ -38,10 +38,11 @@ $args=array(
             href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php 
             the_title(get_post_meta( $post->ID, '_prefixo', TRUE).' '); ?></a></h2>
           <div class="layer-shadow light colapse-toggle"><hr /></div>
-          <aside class="sidebar">
             <?php
             $user_id = get_post_meta($post->ID, '_user_id', true);
             if (($user_id) && ($user_id != -1)){
+              ?><aside class="sidebar"><?php
+              
               $pessoa = get_userdata($user_id);
               // Foto da pessoa
               if (userphoto_exists($pessoa)){
@@ -106,9 +107,9 @@ $args=array(
                 } ?>
                 </ul>
                 <?php
-              }
+              }?>
+              </aside><?php
             } ?>
-          </aside>
           <div class="entry">
             <?php the_content('Read the rest of this entry »'); ?>
           </div>

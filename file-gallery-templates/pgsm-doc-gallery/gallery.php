@@ -21,6 +21,7 @@
   } else {
     $thumb_link = $images_path . 'icn_generico.png';
   }
+  $has_more_pages = ($file_gallery_query->max_num_pages > $page);
 ?>
 <dl class="gallery-item<?php echo $endcol; ?>">
 	<dt class="gallery-icon">
@@ -59,3 +60,13 @@
 		<?php echo '<span class="doc-size">' . round($size, 0).$units[$i] . '</span>'; ?>
 	</dd>
 </dl>
+<?php
+if ($has_more_pages){?>
+  <div class="navigation">
+    <div class="line-button">
+      <a href="<?php echo $next_page_link ?>">Mais Documentos</a>
+    </div>
+  </div>
+<?php
+}
+?>

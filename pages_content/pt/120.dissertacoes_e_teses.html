@@ -2,35 +2,35 @@
 Title:  Dissertações e Teses
 -->
 <form>
+  <h1 class="entry-title">Dissertações e Teses</h1>
   <h2>Busca</h2>
   <input type="text" />
   <input type="submit" value="Buscar" />
   <h2>Procurar em</h2>
   <div id="filtros-busca">
     <div class="col1">
-      <label><input type="checkbox" /> dissertações</label>
-      <label><input type="checkbox" /> teses</label>
+      <label><input checked type="checkbox" /> dissertações</label>
+      <label><input checked type="checkbox" /> teses</label>
     </div>
     <div class="col2">
-      <label><input type="checkbox" /> autor</label>
-      <label><input type="checkbox" /> título</label>
-      <label><input type="checkbox" /> orientador</label>
+      <label><input checked type="checkbox" /> autor</label>
+      <label><input checked type="checkbox" /> título</label>
+      <label><input checked type="checkbox" /> orientador</label>
     </div>
     <div class="col3">
       <h2><label>Entre os Anos de</label></h2>
       <p>
         <select>
-          <option selected="selected">Escolha um</option>
-          [year_option_list]
+          [year_option_list selected="first"]
         </select>
         e
         <select>
-          [year_option_list]
-          <option selected="selected">Escolha um</option>
+          [year_option_list selected="last"]
         </select>
       </p>
     </div>
   </div>
 </form>
+<div class="layer-shadow"><hr /></div>
 <h2>Últimas Publicações</h2>
-[gallery link="file" limit="10" paginate="true" template="pgsm-doc-gallery" columns="0"]
+[gallery link="file" limit="1" paginate="true" template="pgsm-doc-gallery" columns="0"]

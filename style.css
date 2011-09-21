@@ -378,6 +378,9 @@ body #content .entry-title{
   color: #87adb8;
   font-size:13px;
 }
+.navigation .line-button a{
+  margin-top:20px;
+}
 #searchform{
   height:48px;
   position:absolute;
@@ -457,10 +460,6 @@ body.slug-sites_de_interesse .layer-shadow{
 body.blog{
 /*  background-image: url(dev/ref_noticias.png);*/
 }
-body.slug-disciplinas .entry-title,
-body.blog .entry-title{
-  float:left;
-}
 body.blog .layer-shadow{
   margin-top:3px;
 }
@@ -473,8 +472,8 @@ body.blog .entry{
   margin-bottom:22px;
 }
 body.slug-disciplinas .entry{
-  margin-top:10px;
-  margin-bottom:22px;
+  margin-top:22px;
+  margin-bottom:0px;
 }
 body.blog .navigation{
   margin-top:20px;
@@ -491,7 +490,7 @@ body.slug-credenciados{
   margin-top:0px;
 }
 #content .people.collapsible{
-  padding-bottom:44px;
+  padding-bottom:7px;
 }
 #content .people.collapsible.closed{
   padding-bottom:0px;
@@ -542,6 +541,7 @@ body.slug-credenciados{
 body.slug-documentos{
 /*  background-image: url(dev/pgsm_09_documentos_v1.png);*/
 }
+body.slug-dissertacoes_e_teses .layer-shadow,
 body.slug-documentos .layer-shadow{
   margin-bottom:26px;
 }
@@ -590,6 +590,26 @@ body.slug-dissertacoes_e_teses label{
 }
 body.slug-dissertacoes_e_teses .doc-name{
   padding-top:0px;
+}
+/*INGRESSO E REGULAMENTO*/
+section.collapsible .entry{
+  padding-top:22px;
+}
+section.collapsible.closed .entry{
+  padding-top:0px;  
+}
+section .destaque{
+  border:1px solid #ddd;
+  background-color:#fafafa;
+  border-radius:10px;
+  padding:16px 21px 17px 22px;
+}
+#content section p.destaque{
+  font-size:13px;
+  color:#000;
+}
+#content section h3{
+  margin-bottom:1em;
 }
 /******************************************************************
 RIGHT SIDEBAR (HOME)

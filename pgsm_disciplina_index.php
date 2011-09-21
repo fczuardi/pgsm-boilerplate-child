@@ -4,6 +4,7 @@ Template Name: Listagem de Disciplinas
 */
 get_header(); ?>
 <h1 class="entry-title">Disciplinas</h1>
+<h2>Lista Completa</h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>
 		<input type="search" id="s" name="s" value="" placeholder="Pesquisar por...">
@@ -14,7 +15,7 @@ get_header(); ?>
 <div class="layer-shadow"><hr /></div>
 
 <?php
-$post_per_page = 3;
+$post_per_page = 10;
 $do_not_show_stickies = 1;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args=array(
