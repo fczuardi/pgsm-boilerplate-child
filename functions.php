@@ -571,7 +571,7 @@ function mt_settings_page() {
     {
       wp_die( __('You do not have sufficient permissions to access this page.') );
     }
-    $submit_label = __( 'Pupular Páginas Iniciais', 'pgsm-boilerplate-child' );
+    $submit_label = __( 'Popular Páginas Iniciais', 'pgsm-boilerplate-child' );
     $has_pages = false;
     $content_pages_path = '/pages_content/pt';
     //loop through the portuguese content file directory
@@ -585,7 +585,7 @@ function mt_settings_page() {
           if ($name_parts[1] == '') {
             continue;
           }
-          echo $page_path . '<br>';
+          echo $page_path;
           
           if ($_POST['update_pages'] == 'yes'){
             $page_content = file_get_contents(get_stylesheet_directory() . $content_pages_path . '/' . $file);
@@ -611,11 +611,14 @@ function mt_settings_page() {
             $updated_page['post_content'] = substr($page_content,strlen($matches[0])+1);
             $updated_page['menu_order'] = (int) $name_parts[0]; //If new post is a page, sets the order should it appear in the tabs.
             if($meta['parent']){
-              // this will only work if the menu_order for the child comes after the parent
-              // I am doing this to prevent an extra query to get the id of a page from the slug
-              var_dump($page_ids);
-              echo '<br>---<br>';
-              $parentId = $page_ids[$meta['parent']];
+              if($page_ids[$meta['parent']]){
+                // this will only work if the menu_order for the child comes after the parent
+                // I am doing this to prevent an extra query to get the id of a page from the slug
+                $parentId = $page_ids[$meta['parent']];
+              }else{
+                $parent_page = get_page_by_path($meta['parent']);
+                $parentId = $parent_page['ID'];
+              }
               $updated_page['post_parent'] = $parentId; //Sets the parent of the new post.
             }
             //   'menu_order' => [ <order> ] //If new post is a page, sets the order should it appear in the tabs.
@@ -632,7 +635,7 @@ function mt_settings_page() {
                echo  'Add Page Failed <br>';
               }
             } else {
-              echo 'update<br>';
+              echo ' updated<br>';
               $pageid = $updated_page['ID'];
               wp_update_post($updated_page);
             }
