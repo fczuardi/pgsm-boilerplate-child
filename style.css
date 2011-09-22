@@ -728,40 +728,43 @@ font-size: 14px;
 /******************************************************************
 IE 6 version
 ******************************************************************/
+/******************************************************************
+IE 6 version
+******************************************************************/
 #ie6-message{
  display:none;
 }
-html.lte9 header{
+html.lte8 header{
   display:none;
 }
-html.lte9 nav{
+html.lte8 nav{
   display:none;
 }
-html.lte9 #content{
+html.lte8 #content{
   display:none; 
 }
-html.lte9 footer{
+html.lte8 footer{
   width:425px;
   padding-top:30px;
   margin:auto;
 }
-html.lte9 footer[role=contentinfo] {
+html.lte8 footer[role=contentinfo] {
   width:425px;
   padding-top:30px;
   margin-left:-255px;
 }
-html.lte9.ie7 footer[role=contentinfo]{
+html.lte8.ie7 footer[role=contentinfo]{
   position:static;
   margin-left:290px;
 }
 
-html.lte9 #logo-footer{
+html.lte8 #logo-footer{
   display:none;
 }
-html.lte9 li{
+html.lte8 li{
   float:left;
 }
-html.lte9 #ie6-message{
+html.lte8 #ie6-message{
   width:425px;
   height:260px;
   padding:40px;
@@ -776,10 +779,10 @@ html.lte9 #ie6-message{
   margin-top:100px;
   display:block;
 }
-html.lte9.ie7 #ie6-message{
+html.lte8.ie7 #ie6-message{
   height:290px;
 }
-html.lte9 #ie6-message h1{
+html.lte8 #ie6-message h1{
   color: #333333;
   display: block;
   font-family: Helvetica,Arial,sans-serif;
@@ -787,14 +790,14 @@ html.lte9 #ie6-message h1{
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-html.lte9 #ie6-message p{
+html.lte8 #ie6-message p{
   margin-bottom:2em;
 }
-html.lte9 #ie6-message ul{
+html.lte8 #ie6-message ul{
   list-style:none;
   margin:0px;
 }
-html.lte9 #ie6-message li{
+html.lte8 #ie6-message li{
   height: 122px;
   width: 120px;
   background: url("./ie6/background_browser.gif") no-repeat scroll left top transparent;
@@ -802,12 +805,12 @@ html.lte9 #ie6-message li{
   margin: 0 30px 20px 0;
   text-align:center;
 }
-html.lte9 #ie6-message li img{
+html.lte8 #ie6-message li img{
   height:100px;
   width:100px;
   border:0px;
 }
-html.lte9 #ie6-message li p{
+html.lte8 #ie6-message li p{
   color: #808080;
   font-size: 0.8em;
   height: 18px;

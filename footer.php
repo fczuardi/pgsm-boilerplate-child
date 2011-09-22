@@ -37,7 +37,7 @@
       </p>
 		</footer>
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory');?>/js/main.js"></script>
-  <!--[if lt IE 7 ]>
+  <!--[if lt IE 9 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->

@@ -577,6 +577,7 @@ function mt_settings_page() {
     //loop through the portuguese content file directory
     if ($handle = opendir(get_stylesheet_directory() . $content_pages_path)) {
         $page_ids = array();
+        $remaining_pages = array();
         /* This is the correct way to loop over the directory. */
         while (false !== ($file = readdir($handle))) {
           $name_parts = explode('.', $file);
@@ -616,8 +617,9 @@ function mt_settings_page() {
                 // I am doing this to prevent an extra query to get the id of a page from the slug
                 $parentId = $page_ids[$meta['parent']];
               }else{
-                $parent_page = get_page_by_path($meta['parent']);
-                $parentId = $parent_page['ID'];
+                $remaining_files[] = $file;
+                // $parent_page = get_page_by_path($meta['parent']);
+                // $parentId = $parent_page['ID'];
               }
               $updated_page['post_parent'] = $parentId; //Sets the parent of the new post.
             }
