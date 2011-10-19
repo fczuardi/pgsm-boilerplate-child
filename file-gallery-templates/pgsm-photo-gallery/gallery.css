@@ -5,7 +5,9 @@ IMAGE GALLERY
   float:left;
   padding-right: 5px;
 }
-
+.gallery-endcol{
+  padding-right: 0px;
+}
 #cboxOverlay{
   background-color:#05212a;
 }
@@ -24,4 +26,7 @@ IMAGE GALLERY
 }
 #cboxCurrent{
   margin-top: -6px;
+}
+.clear{
+  clear:both;
 }
