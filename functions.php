@@ -13,7 +13,6 @@ function my_child_theme_setup() {
   ) );
   remove_action( 'widgets_init', 'boilerplate_widgets_init' );
   add_action('widgets_init', 'pgsm_widgets_init');
-  add_action('admin_menu', 'mt_add_pages');
   // autop is lame, remove it
   remove_filter('the_content', 'wpautop');
   remove_filter('the_excerpt', 'wpautop');
@@ -554,115 +553,6 @@ function filter_pagination_for_custom_types($query_string){
     return $query_string;
 }
 
-
-
-
-
-
-// Código emprestado de http://codex.wordpress.org/Administration_Menus
-function mt_add_pages() {
-    add_pages_page(__('Conjunto Inicial','pgsm-boilerplate-child'), __('Conjunto Inicial','pgsm-boilerplate-child'), 'manage_options', 'startingpages', 'mt_settings_page');
-}
-// mt_settings_page() displays the page content for the Test settings submenu
-function mt_settings_page() {
-    echo "<h2>" . __( 'Default Static Pages', 'pgsm-boilerplate-child' ) . "</h2>";
-    //must check that the user has the required capability 
-    if (!current_user_can('manage_options'))
-    {
-      wp_die( __('You do not have sufficient permissions to access this page.') );
-    }
-    $submit_label = __( 'Popular Páginas Iniciais', 'pgsm-boilerplate-child' );
-    $has_pages = false;
-    $content_pages_path = '/pages_content/pt';
-    //loop through the portuguese content file directory
-    if ($handle = opendir(get_stylesheet_directory() . $content_pages_path)) {
-        $page_ids = array();
-        $remaining_pages = array();
-        /* This is the correct way to loop over the directory. */
-        while (false !== ($file = readdir($handle))) {
-          $name_parts = explode('.', $file);
-          $page_path = implode('/', array_slice($name_parts, 1, -1));
-          $page = get_page_by_path($page_path);
-          if ($name_parts[1] == '') {
-            continue;
-          }
-          echo $page_path;
-          
-          if ($_POST['update_pages'] == 'yes'){
-            $page_content = file_get_contents(get_stylesheet_directory() . $content_pages_path . '/' . $file);
-
-            //extract metadata
-            preg_match("/^\<!--([^∫]*)-->/U", $page_content, $matches);
-            $meta_lines = explode("\n", trim($matches[1]));
-            $meta = array();
-            foreach ($meta_lines as $line){
-              preg_match("/([^∫]*)\s*\:\s*(.*)/", $line, $parts);
-              $meta[strtolower($parts[1])] = $parts[2];
-            }
-            if (is_null($page)){
-              $updated_page = array();
-              $updated_page['post_type']  = 'page';
-              $updated_page['post_name'] = $name_parts[count($name_parts)-2];
-            } else {
-              $updated_page = (array) $page;
-              $has_pages = true;
-            }
-            $updated_page['post_title'] = $meta['title'];
-            $updated_page['post_status'] = 'publish';
-            $updated_page['post_content'] = substr($page_content,strlen($matches[0])+1);
-            $updated_page['menu_order'] = (int) $name_parts[0]; //If new post is a page, sets the order should it appear in the tabs.
-            if($meta['parent']){
-              if($page_ids[$meta['parent']]){
-                // this will only work if the menu_order for the child comes after the parent
-                // I am doing this to prevent an extra query to get the id of a page from the slug
-                $parentId = $page_ids[$meta['parent']];
-              }else{
-                $remaining_files[] = $file;
-                // $parent_page = get_page_by_path($meta['parent']);
-                // $parentId = $parent_page['ID'];
-              }
-              $updated_page['post_parent'] = $parentId; //Sets the parent of the new post.
-            }
-            //   'menu_order' => [ <order> ] //If new post is a page, sets the order should it appear in the tabs.
-            //   'comment_status' => [ 'closed' | 'open' ] // 'closed' means no comments.
-            //   'ping_status' => [ 'closed' | 'open' ] // 'closed' means pingbacks or trackbacks turned off
-            //   'pinged' => [ ? ] //?
-            //   'post_author' => [ <user ID> ] //The user ID number of the author.
-            //   'post_category' => [ array(<category id>, <...>) ] //Add some categories.
-            //   'tags_input' => [ '<tag>, <tag>, <...>' ] //For tags.
-            if (is_null($page)){
-              echo 'insert<br>';
-              $pageid = wp_insert_post ($updated_page);
-              if ($pageid == 0) { 
-               echo  'Add Page Failed <br>';
-              }
-            } else {
-              echo ' updated<br>';
-              $pageid = $updated_page['ID'];
-              wp_update_post($updated_page);
-            }
-            $page_ids[$page_path] = $pageid;
-            if ($meta['template']) {
-              update_post_meta($pageid, '_wp_page_template', $meta['template'] . '.php');
-            }
-            if ($meta['option']) {
-              if (($meta['option'] == 'page_on_front') || ($meta['option'] == 'page_for_posts')){
-                update_option( $meta['option'], $pageid );
-              }
-            }
-          }
-        } // while
-        closedir($handle);
-        if ($has_pages) {
-          $submit_label = __( 'Sobrescrever Páginas Iniciais (cuidado!)', 'pgsm-boilerplate-child' );
-        }
-        ?>
-        <form action="" method="POST">
-          <input type="hidden" name="update_pages" value="yes">
-          <input type="submit" value="<?php echo $submit_label;?>"/>
-        <?php
-    }    
-}
 /**
  * Prints HTML with meta information for the current post—date/time and author.
  *
