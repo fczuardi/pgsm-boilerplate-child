@@ -245,6 +245,10 @@ body #content .entry-title{
   font-size:18px;
   font-weight:normal;
   letter-spacing:3.5px;
+  margin-top:15px;
+  margin-bottom:25px;
+}
+body #content .com-subtitulo{
   margin-top:9px;
   margin-bottom:4px;
 }

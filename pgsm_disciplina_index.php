@@ -3,7 +3,7 @@
 Template Name: Listagem de Disciplinas
 */
 get_header(); ?>
-<h1 class="entry-title">Disciplinas</h1>
+<h1 class="entry-title com-subtitulo">Disciplinas</h1>
 <h2>Lista Completa</h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>

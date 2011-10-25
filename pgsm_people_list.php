@@ -2,7 +2,7 @@
 global $page_title, $page_subtitle, $next_page_label, $list_item_type, $post_subtype, $post_per_page;
 get_header(); 
 ?>
-<h1 class="entry-title"><?php echo $page_title; ?></h1>
+<h1 class="entry-title com-subtitulo"><?php echo $page_title; ?></h1>
 <h2><?php echo $page_subtitle; ?></h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>

@@ -8,7 +8,7 @@ Template Name: Página de Notícias
 Baseado no exemplo: http://codex.wordpress.org/Pages#A_Page_of_Posts
 */
 get_header(); ?>
-<h1 class="entry-title">Notícias</h1>
+<h1 class="entry-title com-subtitulo">Notícias</h1>
 <h2>Mais Recentes</h2>
 <form action="<?php echo home_url( '/' ); ?>" id="searchform" method="get" role="search">
 		<div>
