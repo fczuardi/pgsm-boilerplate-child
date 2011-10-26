@@ -74,7 +74,7 @@ header[role=banner] {
   font-weight: normal;
 }
 #inner-header a{
-  color: #133d4c;
+  color: #04202a;
   text-decoration: none;
 }
 #inner-header h1{
@@ -84,7 +84,7 @@ header[role=banner] {
   margin-right:-6px;
 }
 #inner-header h2{
-  color:#7ca3af;
+  color:#fff;
   font-size: 10px;
   width: 340px;
   float: right;
