@@ -246,7 +246,7 @@ body #content .entry-title{
   font-weight:normal;
   letter-spacing:3.5px;
   margin-top:15px;
-  margin-bottom:25px;
+  margin-bottom:30px;
 }
 body #content .com-subtitulo{
   margin-top:9px;
@@ -317,11 +317,11 @@ body #content .com-subtitulo{
 
 .print-button{
   position:absolute;
-  top:66px;
+  top:60px;
   right:60px;
   background-image:url(images/printer.png);
   background-repeat: no-repeat;
-  background-position: right 1px;
+  background-position: right 6px;
 }
 .print-button a{
   text-transform:uppercase;
