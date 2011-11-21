@@ -7,6 +7,6 @@ $page_subtitle = __('Credenciados', 'pgsm-boilerplate-child');
 $next_page_label = __('Mais Orientadores');
 $list_item_type = 'pgsm_orientador';
 $post_subtype = 'credenciado';
-$post_per_page = 10;
+$post_per_page = -1;
 get_template_part( 'pgsm_people_list' ); 
 ?>
