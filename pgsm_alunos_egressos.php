@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Listagem de Alunos de Doutorado
+Template Name: Listagem de Alunos de Egressos
 */
 $page_title = __('Alunos', 'pgsm-boilerplate-child');
 $page_subtitle = __('Egressos', 'pgsm-boilerplate-child');
