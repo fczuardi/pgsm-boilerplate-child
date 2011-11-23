@@ -15,7 +15,7 @@ get_header(); ?>
 <div class="layer-shadow"><hr /></div>
 
 <?php
-$post_per_page = 10;
+$post_per_page = -1;
 $do_not_show_stickies = 1;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args=array(
