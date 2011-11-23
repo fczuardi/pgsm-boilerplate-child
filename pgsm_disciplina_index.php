@@ -22,7 +22,7 @@ $args=array(
     'paged' => $paged,
     'post_type' => 'pgsm_disciplina',
     'orderby' => 'title',
-    'order' => 'DESC',
+    'order' => 'ASC',
     'posts_per_page' => $post_per_page,
     'caller_get_posts' => $do_not_show_stickies
   );
