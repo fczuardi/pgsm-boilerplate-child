@@ -4,7 +4,9 @@ jQuery(document).ready(function($) {
   $('.current_page_parent').addClass('opened')
   $('.current_page_item.parent').addClass('opened')
   
-  
+  $('#recent-posts-with-time-2 ul a').bind('click', function(event){
+    event.preventDefault();
+  });
   //apply collapsible behavior for colapsible post list elements
   $('.collapsible').bind('click', function(event){
     if (! $(event.target).hasClass('colapse-toggle')){ return; }

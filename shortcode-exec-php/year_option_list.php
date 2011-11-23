@@ -1,20 +1,20 @@
 <?php
-$current_year = date('Y');
+$current_year = date("Y");
 $oldest_year = 1990;
-extract(shortcode_atts(array('selected' => null), $atts));
-if($selected == 'first'){
+extract(shortcode_atts(array("selected" => null), $atts));
+if($selected == "first"){
   $selected = $oldest_year;
 }
 
-if($selected == 'last'){
+if($selected == "last"){
   $selected = $current_year;
 }
 
 for ($ano = $oldest_year; $ano <= $current_year; $ano++){
- echo "<option value=\"$ano\"";
+ echo "<option value=\\"$ano\\"";
  if ($ano == $selected){
-   echo " selected=\"selected\"";
+   echo " selected=\\"selected\\"";
  }
- echo ">$ano</option>\n";
+ echo ">$ano</option>\\n";
 }
 ?>
